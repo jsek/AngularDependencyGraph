@@ -2,6 +2,13 @@
 logs
 *.log
 
+#JavaScript
+config/**/*.js
+src/**/*.js
+tasks/**/*.js
+tests/**/*.js
+.ntvs*
+
 # Runtime data
 pids
 *.pid

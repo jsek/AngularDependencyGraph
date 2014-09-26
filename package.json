@@ -1,0 +1,24 @@
+{
+  "name": "AngularDependencyGraph",
+  "version": "0.0.2",
+  "description": "Angular Dependency Graph Generator",
+  "main": "run.js",
+  "author": "jsek",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "node-fs": "^0.1.7"
+  },
+  "devDependencies": {
+    "coffee": "0.0.1",
+    "coffeelint": "^1.6.0",
+    "grunt-coffeelint": "0.0.13",
+    "grunt-contrib-coffee": "^0.11.1",
+    "grunt-contrib-nodeunit": "^0.4.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-newer": "^0.7.0"
+  }
+}

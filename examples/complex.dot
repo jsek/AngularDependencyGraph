@@ -1,0 +1,47 @@
+digraph dependencies{
+ compound = true;
+ node[ fontname = "Verdana", fontsize = "9" ];
+  subgraph cluster_MainModule { label = "MainModule";
+  	"Log" [  ];
+  }
+  subgraph cluster_Module1 { label = "Module1";
+  	"_1_Service1" [  ];
+  }
+  subgraph cluster_Module2 { label = "Module2";
+  	"_2_Service1" [  ];
+  }
+  subgraph cluster_Module3 { label = "Module3";
+  	"_3_Service1" [  ];
+  }
+  subgraph cluster_Module4 { label = "Module4";
+  	"_4_Service1" [  ];
+  }
+  subgraph cluster_Module5 { label = "Module5";
+  	"_5_Service1" [  ];
+  }
+  subgraph cluster_Module6 { label = "Module6";
+  	"_6_GreedyService1" [  ];
+  }
+         "_1_Service1" -> "Log";
+      "_2_Service1" -> "Log";
+      "_3_Service1" -> "_2_Service2";
+      "_4_Service1" -> "_2_Service1";
+      "_5_Service1" -> "Main1";
+  "_5_Service1" -> "Log";
+  "_5_Service1" -> "_3_Service1";
+      "_6_GreedyService1" -> "Log";
+  "_6_GreedyService1" -> "_3_Service2";
+  "_6_GreedyService1" -> "_2_Service1";
+  "_6_GreedyService1" -> "_5_Service1";
+  "_6_GreedyService1" -> "_5_Service2";
+        	"_1_Service1" -> "Log" [ ltail = cluster_Module1, lhead = cluster_MainModule, arrowhead = empty, color = "gray" ]
+    	"_2_Service1" -> "Log" [ ltail = cluster_Module2, lhead = cluster_MainModule, arrowhead = empty, color = "gray" ]
+    	"_3_Service1" -> "_2_Service1" [ ltail = cluster_Module3, lhead = cluster_Module2, arrowhead = empty, color = "gray" ]
+    	"_4_Service1" -> "_2_Service1" [ ltail = cluster_Module4, lhead = cluster_Module2, arrowhead = empty, color = "gray" ]
+    	"_5_Service1" -> "Log" [ ltail = cluster_Module5, lhead = cluster_MainModule, arrowhead = empty, color = "gray" ]
+  	"_5_Service1" -> "_3_Service1" [ ltail = cluster_Module5, lhead = cluster_Module3, arrowhead = empty, color = "gray" ]
+    	"_6_GreedyService1" -> "_1_Service1" [ ltail = cluster_Module6, lhead = cluster_Module1, arrowhead = empty, color = "gray" ]
+  	"_6_GreedyService1" -> "_2_Service1" [ ltail = cluster_Module6, lhead = cluster_Module2, arrowhead = empty, color = "gray" ]
+  	"_6_GreedyService1" -> "_3_Service1" [ ltail = cluster_Module6, lhead = cluster_Module3, arrowhead = empty, color = "gray" ]
+  	"_6_GreedyService1" -> "_5_Service1" [ ltail = cluster_Module6, lhead = cluster_Module5, arrowhead = empty, color = "gray" ]
+   }

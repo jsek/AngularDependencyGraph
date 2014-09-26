@@ -1,0 +1,8 @@
+digraph dependencies{
+ compound = true;
+ node[ fontname = "Verdana", fontsize = "9" ];
+  subgraph cluster_recipe { label = "recipe";
+  	"recipeCtrl" [  ];
+  }
+     "recipeCtrl" -> "recipeService";
+       }
