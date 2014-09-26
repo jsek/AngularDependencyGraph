@@ -4,6 +4,10 @@
   "description": "Angular Dependency Graph Generator",
   "main": "run.js",
   "author": "jsek",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jsek/AngularDependencyGraph.git"
+  },
   "scripts": {
     "test": "grunt test"
   },
