@@ -1,94 +1,88 @@
-'use strict';
+Module = (name, dependencies) ->
+  @name = name
+  @moduleDependencies = dependencies
+  @items = []
+  return
+"use strict"
+angular = {}
+extractDependenciesFromFunction = (fn) ->
+  dependencies = []
+  try
+    dependencies = fn.toString().match(/function \((.|[\r\n])*?\)/)[0].replace(/function /, "").replace(/[\(]/, "").replace(/[\)]/, "").split(",").map((x) ->
+      x.trim()
+    ).filter((x) ->
+      x.length > 0
+    )
+  dependencies
 
-function Module(name, dependencies) {
-  this.name = name
-  this.moduleDependencies = dependencies
-  this.items = []
-}
+methods = [
+  "constant"
+  "controller"
+  "directive"
+  "factory"
+  "filter"
+  "provider"
+  "service"
+  "value"
+]
+globalApis = [
+  "lowercase"
+  "uppercase"
+  "forEach"
+  "extend"
+  "identity"
+  "noop"
+  "isUndefined"
+  "isDefined"
+  "isObject"
+  "isString"
+  "isNumber"
+  "isDate"
+  "isArray"
+  "isFunction"
+  "isElement"
+  "copy"
+  "equals"
+  "bind"
+  "toJson"
+  "fromJson"
+  "bootstrap"
+  "injector"
+  "element"
+]
+methods.forEach (method) ->
+  Module::[method] = addItem = (name, fn) ->
+    dependencies = extractDependenciesFromFunction(fn)
+    @items.push
+      name: name
+      dependencies: dependencies
 
-var angular = {};
+    this
 
-var extractDependenciesFromFunction = function (fn) {
-  var dependencies = [];
-  try {
-   dependencies = fn.toString()
-     .match(/function \((.|[\r\n])*?\)/)[0]
-     .replace(/function /, '')
-     .replace(/[\(]/, '')
-     .replace(/[\)]/, '')
-     .split(',')
-     .map(function (x) { return x.trim(); })
-     .filter(function (x) { return x.length > 0; });
-  } catch (e) { }
-  return dependencies;
-};
+  return
 
+Module::config = ->
+  this
 
-var methods = ['constant', 'controller', 'directive', 'factory', 'filter', 'provider', 'service', 'value']
-var globalApis = ['lowercase',
-  'uppercase',
-  'forEach',
-  'extend',
-  'identity',
-  'noop',
-  'isUndefined',
-  'isDefined',
-  'isObject',
-  'isString',
-  'isNumber',
-  'isDate',
-  'isArray',
-  'isFunction',
-  'isElement',
-  'copy',
-  'equals',
-  'bind',
-  'toJson',
-  'fromJson',
-  'bootstrap',
-  'injector',
-  'element',
-];
+module.exports = ->
+  angular =
+    modules: []
+    modulesMap: {}
+    modulesNames: []
+    module: (name, deps) ->
+      if @modulesNames.indexOf(name) > -1
+        @modulesMap[name].moduleDependencies = deps  if deps
+        return @modulesMap[name]
+      module = new Module(name, deps)
+      @modulesNames.push name
+      @modulesMap[name] = module
+      @modules.push module
+      module
 
-methods.forEach(function (method) {
-    Module.prototype[method] = function addItem(name, fn) {
-        var dependencies = extractDependenciesFromFunction(fn);
+  noop = ->
 
-        this.items.push({ name: name, dependencies: dependencies });
-
-        return this;
-    }
-})
-
-Module.prototype.config = function() {
-  return this
-};
-
-module.exports = function() {
-  angular = {
-    modules: [],
-    modulesMap: {},
-    modulesNames: [],
-    module: function(name, deps) {
-      if (this.modulesNames.indexOf(name)>-1){
-        if(deps){
-          this.modulesMap[name].moduleDependencies = deps
-        }
-        return this.modulesMap[name]
-      }
-
-      var module = new Module(name,deps)
-
-      this.modulesNames.push(name)
-      this.modulesMap[name] = module
-      this.modules.push(module)
-      return module
-    }
-  }
-  var noop = function(){}
-  globalApis.forEach(function(method) {
+  globalApis.forEach (method) ->
     angular[method] = noop
-  });
+    return
 
-  return angular
-}
+  angular
