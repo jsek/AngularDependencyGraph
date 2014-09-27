@@ -7,7 +7,7 @@ node_js:
 before_install:
   - npm update npm -g
 before_script:
-  - npm install -g grunt && grunt-cli
+  - npm install -g grunt-cli
   - npm install
   - grunt build
   - npm test
