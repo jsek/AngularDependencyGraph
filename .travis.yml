@@ -10,5 +10,5 @@ before_script:
   - npm install -g grunt-cli
   - npm install -g coffee
   - npm install
-  - coffee bc .
+  - coffee -bc .
   - npm test
