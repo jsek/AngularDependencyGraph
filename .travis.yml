@@ -8,6 +8,7 @@ before_install:
   - npm update npm -g
 before_script:
   - npm install -g grunt-cli
+  - npm install -g coffee
   - npm install
-  - grunt build
+  - coffee bc .
   - npm test
