@@ -1,4 +1,4 @@
 task :default do
-  system( 'coffee -bc .' )
+  system( 'grunt build' )
   system( 'npm test' )
 end
