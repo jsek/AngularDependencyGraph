@@ -28,12 +28,12 @@
                 expand: true
                 bare: true
                 cwd: '.'
-                src: ['src/**/*.coffee', 'tasks/**/*.coffee', 'tests/**/*.coffee', 'Gruntfile.coffee']
+                src: ['src/**/*.coffee', 'tasks/**/*.coffee', 'tests/**/*.coffee', 'config/**/*.coffee', 'Gruntfile.coffee']
                 dest: '.'
                 ext: '.js'
             
         coffeelint:
-            all: ['src/**/*.coffee', 'tasks/**/*.coffee', 'tests/**/*.coffee']
+            all: ['src/**/*.coffee', 'tasks/**/*.coffee', 'tests/**/*.coffee', 'config/**/*.coffee']
             options:
                 configFile: 'coffeelint.json'
       
