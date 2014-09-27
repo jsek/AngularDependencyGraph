@@ -1,5 +1,5 @@
 fs = require("node-fs")
-Utils = require("../mocks/fake-UtilsNamespace.js")()
+Utils = require("../mocks/fake-UtilsNamespace")()
 document = window = navigator = {}
 
 
@@ -14,7 +14,7 @@ log = (grunt, results, verbose) ->
 
 
 module.exports = (grunt, scripts, options) ->
-    angular = require("../mocks/fake-angular.js")()
+    angular = require("../mocks/fake-angular")()
 
     results = scripts.map (script) ->
         try
