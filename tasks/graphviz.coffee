@@ -6,7 +6,7 @@
 # * Licensed under the MIT license.
 # 
 "use strict"
-config = require("../config/Config.js")
+config = require("../config/Config")
 path = require("path")
     
 module.exports = (grunt) ->

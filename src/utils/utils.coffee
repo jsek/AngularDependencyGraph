@@ -1,2 +1,2 @@
-﻿require './arrayUtils.js'
-require './stringUtils.js'
+﻿require './arrayUtils'
+require './stringUtils'
