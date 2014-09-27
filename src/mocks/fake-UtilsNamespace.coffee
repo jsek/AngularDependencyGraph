@@ -12,7 +12,7 @@
     while i < len1
       ns = arguments[i].split(".")
       current = global[ns[0]]
-      current = global[ns[0]] = {}  if current is `undefined`
+      current = global[ns[0]] = {}  unless current?
       sub = ns.slice(1)
       len2 = sub.length
       j = 0
