@@ -1,6 +1,8 @@
 ﻿
 String::filename = ->
-    @split("/").last()
+    @replace(/\\/g, '/')
+    .split('/')
+    .last()
 
 String::endsWith = (suffix) ->
     @lastIndexOf(suffix) + suffix.length is @length
