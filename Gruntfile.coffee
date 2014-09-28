@@ -1,4 +1,27 @@
 ﻿module.exports = (grunt) ->
+
+    all_coffeeScript = [
+        'src/**/*.coffee'
+        'tasks/**/*.coffee'
+        'tests/**/*.coffee'
+        'config/**/*.coffee'
+        'Gruntfile.coffee'
+    ]
+
+    all_javaScript = all_coffeeScript
+        .map (x) -> x.replace '.coffee', '.js' 
+
+    scripts_with_eval = [
+        "src/**/parser.js"
+        "Gruntfile.js"
+    ]
+    
+    jshintOptions = 
+        "-W030"     : true
+        "eqnull"    : true
+        "loopfunc"  : true
+        "node"      : true
+
     grunt.initConfig
 
         generate:
@@ -28,14 +51,14 @@
                 expand: true
                 bare: true
                 cwd: '.'
-                src: ['src/**/*.coffee', 'tasks/**/*.coffee', 'tests/**/*.coffee', 'config/**/*.coffee', 'Gruntfile.coffee']
+                src: all_coffeeScript
                 dest: '.'
                 ext: '.js'
             
         coffeelint:
-            all: ['src/**/*.coffee', 'tasks/**/*.coffee', 'tests/**/*.coffee', 'config/**/*.coffee']
-            options:
-                configFile: 'coffeelint.json'
+            all: 
+                options:
+                    configFile: 'coffeelint.json'
       
         nodeunit:
             options:
@@ -44,18 +67,43 @@
 
         watch:
             coffeescript: 
-                files: ['**/*.coffee'],
-                tasks: ['newer:coffeelint','newer:coffee']
-                    
+                files: all_coffeeScript
+                tasks: [
+                    'newer:coffeelint'
+                    'newer:coffee'
+                    'newer:jshint:all'
+                ]
+
+        jshint:
+            all:
+                options: do -> 
+                    newOptions = Object.create jshintOptions
+                    newOptions.ignores = scripts_with_eval
+                    newOptions
+
+                files: 
+                    src: all_javaScript
+
+            withEval:
+                options: do ->
+                    newOptions = Object.create jshintOptions
+                    newOptions['-W061'] = true
+                    newOptions
+
+                files: 
+                    src: scripts_with_eval
+
 
     grunt.loadNpmTasks 'grunt-contrib-nodeunit'
     grunt.loadNpmTasks 'grunt-contrib-coffee'
+    grunt.loadNpmTasks 'grunt-contrib-jshint'
     grunt.loadNpmTasks 'grunt-contrib-watch'
     grunt.loadNpmTasks 'grunt-coffeelint'
     grunt.loadNpmTasks 'grunt-newer'
     
     grunt.loadTasks 'tasks'
 
-    grunt.registerTask 'default', ['generate', 'graphviz']
-    grunt.registerTask 'build', ['coffeelint', 'coffee']
-    grunt.registerTask 'test', ['nodeunit']
+    grunt.registerTask 'default',   ['generate', 'graphviz']
+    grunt.registerTask 'validate',  ['coffeelint', 'jshint']
+    grunt.registerTask 'build',     ['coffee', 'validate']
+    grunt.registerTask 'test',      ['nodeunit']
