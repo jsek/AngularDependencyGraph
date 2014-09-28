@@ -3,17 +3,14 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <Name>Generator</Name>
-    <RootNamespace>Generator</RootNamespace>
-    <EnableTypeScript>true</EnableTypeScript>
-    <TypeScriptSourceMap>true</TypeScriptSourceMap>
-    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+    <Name>GraphGenerator</Name>
+    <RootNamespace>GraphGenerator</RootNamespace>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>bd8b6944-a200-493e-9f86-b132679f0ef6</ProjectGuid>
+    <ProjectGuid>{adec4596-cd19-42f0-ac42-f0d8c77f896b}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>run.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
@@ -33,27 +30,25 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="src\parser\parser.coffee" />
-    <Compile Include="tasks\graphviz.coffee" />
-    <Compile Include="Gruntfile.js" />
+    <Content Include="README.md" />
+    <Content Include="package.json" />
     <Compile Include="run.js" />
-    <Compile Include="src\templates\graph-template.coffee" />
-    <Compile Include="src\utils\utils.coffee" />
-    <Compile Include="tasks\generator.coffee" />
-    <Compile Include="src\mocks\fake-angular.js" />
-    <Compile Include="src\mocks\fake-UtilsNamespace.js" />
+    <Content Include=".travis.yml" />
+    <Content Include="Gruntfile.coffee" />
+    <Compile Include="Gruntfile.js" />
     <Content Include="coffeelint.json" />
     <Content Include="config\Config.coffee" />
-    <Content Include="Gruntfile.coffee" />
-    <Content Include="package.json" />
-    <Content Include="README.md" />
-    <Content Include="src\formatter\filter.coffee" />
-    <Content Include="src\formatter\formatter.coffee" />
+    <Compile Include="tasks\generator.coffee" />
+    <Compile Include="tasks\graphviz.coffee" />
+    <Compile Include="src\parser\parser.coffee" />
+    <Compile Include="src\templates\graph-template.coffee" />
+    <Compile Include="src\utils\utils.coffee" />
     <Content Include="src\utils\stringUtils.coffee" />
     <Content Include="src\utils\arrayUtils.coffee" />
+    <Content Include="src\formatter\filter.coffee" />
+    <Content Include="src\formatter\formatter.coffee" />
     <Content Include="tests\formatterSpecs.coffee" />
     <Content Include="tests\stringUtilsSpecs.coffee" />
-    <Content Include=".travis.yml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="config\" />
