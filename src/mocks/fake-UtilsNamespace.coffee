@@ -1,25 +1,9 @@
 ﻿module.exports = ->
-  Utils = {}
-  Utils.namespace = ->
-    len1 = arguments.length
-    i = undefined
-    len2 = undefined
-    j = undefined
-    ns = undefined
-    sub = undefined
-    current = undefined
-    i = 0
-    while i < len1
-      ns = arguments[i].split(".")
-      current = global[ns[0]]
-      current = global[ns[0]] = {}  unless current?
-      sub = ns.slice(1)
-      len2 = sub.length
-      j = 0
-      while j < len2
-        current = current[sub[j]] = current[sub[j]] or {}
-        j += 1
-      i += 1
-    current
+  
+    namespace: ->
+        for arg in arguments
+            parts = arg.split "."
+            current = global[parts[0]] or= {}
 
-  Utils
+            for part in parts[1..]
+                current = global[part] or= {}
