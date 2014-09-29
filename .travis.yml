@@ -7,7 +7,6 @@ node_js:
 before_install:
   - npm update npm -g
 before_script:
-  - npm install -g grunt-cli
-  - npm install -g coffee
+  - npm install -g grunt-cli coffee
   - npm install
   - npm test
