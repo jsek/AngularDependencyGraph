@@ -1,5 +1,6 @@
 fs = require("node-fs")
-Utils = require("../mocks/fake-UtilsNamespace")()
+Utils = require("../mocks/fake-UtilsNamespace")
+FakeAngular = require("../mocks/fake-angular")
 document = window = navigator = {}
 
 
@@ -13,8 +14,10 @@ log = (grunt, results, verbose) ->
     grunt.log.writeln "\n >>> #{processed} processed files (#{skipped} skipped)"
 
 
+angular = {}
+
 module.exports = (grunt, scripts, options) ->
-    angular = require("../mocks/fake-angular")()
+    angular = new FakeAngular()
 
     results = scripts.map (script) ->
         try

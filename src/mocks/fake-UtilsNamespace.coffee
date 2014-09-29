@@ -1,5 +1,4 @@
-﻿module.exports = ->
-  
+﻿module.exports = 
     namespace: ->
         for arg in arguments
             parts = arg.split "."

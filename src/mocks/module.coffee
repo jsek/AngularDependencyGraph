@@ -1,18 +1,18 @@
 ﻿class Module
     constructor: (@name, @moduleDependencies) ->
-    items: []
+        @items = []
 
 extractDependenciesFromFunction = (fn) ->
     dependencies = []
     try
         dependencies = fn.toString()
             .match(/function \((.|[\r\n])*?\)/)[0]
-            .replace(/function /, "")
-            .replace(/[\(\)]/, "")
-            .split(",").map (x) -> x.trim()
-            .filter (x) ->
-            x.length > 0
-        
+            .replace(/function/, "")
+            .replace(/[\(\)]/g, "")
+            .split(",")
+            .map (x) -> x.trim()
+            .filter (x) -> x.length > 0
+        #todo: exception handling
     dependencies
 
 methods = [
@@ -37,5 +37,4 @@ for method in methods
 
 Module::config = -> this
 
-module.exports = ->
-    'class': Module
+module.exports = Module

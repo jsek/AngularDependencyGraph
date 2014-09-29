@@ -1,13 +1,15 @@
 require '../utils/arrayUtils'
-Module = require('./Module').class
+Module = require('./module')
 
 class FakeAngular
-    modules: []
-    modulesMap: {}
-    modulesNames: []
+    constructor: ->
+        @modules = []
+        @modulesMap = {}
+        @modulesNames = []
+    
     module: (name, moduleDependencies) ->
         if @modulesNames.contains(name)
-            @modulesMap[name].moduleDependencies = moduleDependencies  if deps
+            @modulesMap[name].moduleDependencies = moduleDependencies  if moduleDependencies?
             return @modulesMap[name]
         # else
         newModule = new Module(name, moduleDependencies)
@@ -45,5 +47,4 @@ globalApis = [
 for method in globalApis
     FakeAngular::[method] = -> # empty
 
-module.exports = ->
-    new FakeAngular()
+module.exports = FakeAngular

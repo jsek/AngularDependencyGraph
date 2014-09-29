@@ -43,6 +43,9 @@
     <Compile Include="src\parser\parser.coffee" />
     <Compile Include="src\templates\graph-template.coffee" />
     <Compile Include="src\utils\utils.coffee" />
+    <Content Include="src\mocks\fake-angular.coffee" />
+    <Content Include="src\mocks\module.coffee" />
+    <Content Include="src\mocks\fake-UtilsNamespace.coffee" />
     <Content Include="src\utils\stringUtils.coffee" />
     <Content Include="src\utils\arrayUtils.coffee" />
     <Content Include="src\formatter\filter.coffee" />
