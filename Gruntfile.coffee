@@ -56,9 +56,9 @@
                 ext: '.js'
             
         coffeelint:
-            all: 
-                options:
-                    configFile: 'coffeelint.json'
+            all: all_coffeeScript
+            options:
+                configFile: 'coffeelint.json'
       
         nodeunit:
             options:
