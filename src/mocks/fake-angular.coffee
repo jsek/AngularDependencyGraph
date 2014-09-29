@@ -1,88 +1,49 @@
-Module = (name, dependencies) ->
-  @name = name
-  @moduleDependencies = dependencies
-  @items = []
-  return
-"use strict"
-angular = {}
-extractDependenciesFromFunction = (fn) ->
-  dependencies = []
-  try
-    dependencies = fn.toString().match(/function \((.|[\r\n])*?\)/)[0].replace(/function /, "").replace(/[\(]/, "").replace(/[\)]/, "").split(",").map((x) ->
-      x.trim()
-    ).filter((x) ->
-      x.length > 0
-    )
-  dependencies
+require '../utils/arrayUtils'
+Module = require('./Module').class
 
-methods = [
-  "constant"
-  "controller"
-  "directive"
-  "factory"
-  "filter"
-  "provider"
-  "service"
-  "value"
-]
-globalApis = [
-  "lowercase"
-  "uppercase"
-  "forEach"
-  "extend"
-  "identity"
-  "noop"
-  "isUndefined"
-  "isDefined"
-  "isObject"
-  "isString"
-  "isNumber"
-  "isDate"
-  "isArray"
-  "isFunction"
-  "isElement"
-  "copy"
-  "equals"
-  "bind"
-  "toJson"
-  "fromJson"
-  "bootstrap"
-  "injector"
-  "element"
-]
-methods.forEach (method) ->
-  Module::[method] = addItem = (name, fn) ->
-    dependencies = extractDependenciesFromFunction(fn)
-    @items.push
-      name: name
-      dependencies: dependencies
-
-    this
-
-  return
-
-Module::config = ->
-  this
-
-module.exports = ->
-  angular =
+class FakeAngular
     modules: []
     modulesMap: {}
     modulesNames: []
-    module: (name, deps) ->
-      if @modulesNames.indexOf(name) > -1
-        @modulesMap[name].moduleDependencies = deps  if deps
-        return @modulesMap[name]
-      module = new Module(name, deps)
-      @modulesNames.push name
-      @modulesMap[name] = module
-      @modules.push module
-      module
+    module: (name, moduleDependencies) ->
+        if @modulesNames.contains(name)
+            @modulesMap[name].moduleDependencies = moduleDependencies  if deps
+            return @modulesMap[name]
+        # else
+        newModule = new Module(name, moduleDependencies)
+        @modulesNames.push name
+        @modulesMap[name] = newModule
+        @modules.push newModule
+        return newModule
 
-  noop = ->
+globalApis = [
+    "lowercase"
+    "uppercase"
+    "forEach"
+    "extend"
+    "identity"
+    "noop"
+    "isUndefined"
+    "isDefined"
+    "isObject"
+    "isString"
+    "isNumber"
+    "isDate"
+    "isArray"
+    "isFunction"
+    "isElement"
+    "copy"
+    "equals"
+    "bind"
+    "toJson"
+    "fromJson"
+    "bootstrap"
+    "injector"
+    "element"
+]
 
-  globalApis.forEach (method) ->
-    angular[method] = noop
-    return
+for method in globalApis
+    FakeAngular::[method] = -> # empty
 
-  angular
+module.exports = ->
+    new FakeAngular()

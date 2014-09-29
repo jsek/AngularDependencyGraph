@@ -7,6 +7,9 @@ Array::notNull = -> x for x in @ when x?
 
 Array::isEmpty = -> @length is 0
 
+Array::contains = (value) -> 
+    @.indexOf(value) >= 0
+
 Array::any = (selector) -> 
     for x in @ when selector(x)
         return x
