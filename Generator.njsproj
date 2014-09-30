@@ -30,6 +30,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="tests\parser\_script_1_fixture.coffee" />
     <Content Include="README.md" />
     <Content Include="package.json" />
     <Compile Include="run.js" />
@@ -50,8 +51,14 @@
     <Content Include="src\utils\arrayUtils.coffee" />
     <Content Include="src\formatter\filter.coffee" />
     <Content Include="src\formatter\formatter.coffee" />
+    <Content Include="tests\mocks\fake-grunt.coffee" />
+    <Content Include="tests\mocks\spy.coffee" />
+    <Content Include="tests\parser\parserSpecs.coffee" />
+    <Content Include="tests\parser\_script_3_fixture.coffee" />
+    <Content Include="tests\parser\_script_2_fixture.coffee" />
+    <Content Include="tests\utils\arrayUtilsSpecs.coffee" />
     <Content Include="tests\formatterSpecs.coffee" />
-    <Content Include="tests\stringUtilsSpecs.coffee" />
+    <Content Include="tests\utils\stringUtilsSpecs.coffee" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="config\" />
@@ -63,6 +70,9 @@
     <Folder Include="src\parser\" />
     <Folder Include="src\templates\" />
     <Folder Include="tests\" />
+    <Folder Include="tests\mocks\" />
+    <Folder Include="tests\parser\" />
+    <Folder Include="tests\utils\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
 </Project>
