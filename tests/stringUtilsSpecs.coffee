@@ -1,4 +1,7 @@
-﻿require "../src/utils/stringUtils.js"
+﻿if process.env.ANGULARDEPENDENCYGRAPH_COVERAGE
+    require "../src-cov/utils/utils"
+else
+    require "../src/utils/utils"
 
 testSpecialCharacter = (characters) ->
     suite = {}
