@@ -23,9 +23,13 @@ Array::applyScope = (scope, selector) ->
     selector = selector or defaultSelector
     x for x in @ when scope.any (expr) -> expr.simpleMatch(selector(x))
 
-Array::find = (selector) ->
-    for x in @ when selector(x)
-        return x
+Array::find = (selector, value) ->
+    if value?
+        for x in @ when selector(x) is value
+            return x
+    else
+        for x in @ when selector(x) is true
+            return x
     return null
 
 Array::distinct = (selector) ->
@@ -36,6 +40,6 @@ Array::distinct = (selector) ->
 
 Array::count = (selector) ->
     if selector?
-        @.filter(selector).length
+        @filter(selector).length
     else
-        @.length
+        @length
