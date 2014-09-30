@@ -1,7 +1,7 @@
 ﻿if process.env.ANGULARDEPENDENCYGRAPH_COVERAGE
-    require "../src-cov/utils/utils"
+    require "../../src-cov/utils/utils"
 else
-    require "../src/utils/utils"
+    require "../../src/utils/utils"
 
 equalJSON = (test, actual, expected) ->
     test.equal JSON.stringify(actual), JSON.stringify(expected)

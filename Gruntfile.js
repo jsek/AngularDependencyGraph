@@ -1,6 +1,7 @@
 (function() {
   module.exports = function(grunt) {
-    var all_coffeeScript, all_javaScript, jshintOptions, scripts_with_eval;
+    var all_coffeeScript, all_javaScript, jshintOptions, nodeunitReporter, scripts_with_eval;
+    nodeunitReporter = process.env.ANGULARDEPENDENCYGRAPH_COVERAGE ? 'lcov' : 'default';
     all_coffeeScript = ['src/**/*.coffee', 'tasks/**/*.coffee', 'tests/**/*.coffee', 'config/**/*.coffee', 'Gruntfile.coffee'];
     all_javaScript = all_coffeeScript.map(function(x) {
       return x.replace('.coffee', '.js');
@@ -56,7 +57,7 @@
       },
       nodeunit: {
         options: {
-          reporter: 'default'
+          reporter: nodeunitReporter
         },
         files: ['tests/**/*Specs.js']
       },
@@ -71,7 +72,7 @@
           options: (function() {
             var newOptions;
             newOptions = Object.create(jshintOptions);
-            newOptions.ignores = scripts_with_eval;
+            newOptions.ignores = scripts_with_eval.concat('tests/**/*_fixture.js');
             return newOptions;
           })(),
           files: {

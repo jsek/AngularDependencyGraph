@@ -1,4 +1,6 @@
 ﻿module.exports = (grunt) ->
+    
+    nodeunitReporter = if process.env.ANGULARDEPENDENCYGRAPH_COVERAGE then 'lcov' else 'default'
 
     all_coffeeScript = [
         'src/**/*.coffee'
@@ -62,7 +64,7 @@
       
         nodeunit:
             options:
-                reporter: 'default'
+                reporter: nodeunitReporter
             files: ['tests/**/*Specs.js']
 
         watch:
@@ -78,7 +80,7 @@
             all:
                 options: do -> 
                     newOptions = Object.create jshintOptions
-                    newOptions.ignores = scripts_with_eval
+                    newOptions.ignores = scripts_with_eval.concat('tests/**/*_fixture.js')
                     newOptions
 
                 files: 
