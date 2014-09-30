@@ -12,7 +12,8 @@ Array::contains = (value) ->
 
 Array::any = (selector) -> 
     for x in @ when selector(x)
-        return x
+        return true
+    return false
 
 Array::ignoreScope = (scope, selector) ->
     selector = selector or defaultSelector

@@ -11,17 +11,17 @@ exports['[Array Utils]'] =
             test.done()
 
         'Should return item for matching by property': (test) ->
-            test.equal [{name:"A"}, {name:"B"}, {name:"C"}].find((x) -> x.name is "B"), {name:"B"}
+            test.equal [{name:"A"}, {name:"B"}, {name:"C"}].find((x) -> x.name is "B").name, "B"
             test.equal [{name:"A"}, {name:"B"}, {name:"C"}].find((x) -> x.name is "b"), null
             test.done()
     
     '::any':
         'Should return correct result for matching by value': (test) ->
-            test.equal ["A", "B", "C"].find((x) -> x is "B"), true
-            test.equal ["A", "B", "C"].find((x) -> x is "b"), false
+            test.equal ["A", "B", "C"].any((x) -> x is "B"), true
+            test.equal ["A", "B", "C"].any((x) -> x is "b"), false
             test.done()
 
-        'Should return correct resultfor matching by property': (test) ->
+        'Should return correct result for matching by property': (test) ->
             test.equal [{name:"A"}, {name:"B"}, {name:"C"}].any((x) -> x.name is "C"), true
             test.equal [{name:"A"}, {name:"B"}, {name:"C"}].any((x) -> x.name is "c"), false
             test.done()
