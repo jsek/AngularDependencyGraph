@@ -12,8 +12,7 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "grunt test && npm run coveralls",
-    "coveralls": "jscoverage src && ANGULARDEPENDENCYGRAPH_COVERAGE=1 nodeunit --reporter=lcov tests | coveralls"
+    "test": "grunt test"
   },
   "license": "MIT",
   "dependencies": {
