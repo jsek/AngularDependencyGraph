@@ -1,6 +1,6 @@
 {
   "name": "AngularDependencyGraph",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Angular Dependency Graph Generator",
   "main": "run.js",
   "author": "jsek",
