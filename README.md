@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.org/jsek/AngularDependencyGraph.svg?branch=master)](https://travis-ci.org/jsek/AngularDependencyGraph) [![Coverage Status](https://coveralls.io/repos/jsek/AngularDependencyGraph/badge.png)](https://coveralls.io/r/jsek/AngularDependencyGraph)
 
+### Prerequisites
+* GraphViz extracted next to project directory (path is defined in config/Config.coffee)
+* [Task Runner Explorer](http://visualstudiogallery.msdn.microsoft.com/8e1b4368-4afb-467a-bc13-9650572db708)
+
 ### Goals
 * ~100% Code coverage (at Coveralls.io)
 * Passing build on TravisCI (or other CI)
