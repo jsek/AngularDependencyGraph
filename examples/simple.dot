@@ -3,6 +3,13 @@ digraph dependencies{
  node[ fontname = "Verdana", fontsize = "9" ];
   subgraph cluster_recipe { label = "recipe";
   	"recipeCtrl" [  ];
+  	"httpRecipeServiceWithQ" [  ];
+  	"recipeValue" [  ];
+  	"recipeValues" [  ];
+  	"resourceRecipeService" [  ];
+  	"simpleRecipeService" [  ];
   }
      "recipeCtrl" -> "recipeService";
+            "simpleRecipeService" -> "recipeValue";
+  "simpleRecipeService" -> "recipeValues";
        }
