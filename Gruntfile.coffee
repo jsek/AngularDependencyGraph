@@ -42,6 +42,8 @@
                     "./examples/complex.dot": ["./examples/complex/**/*.js"]
 
         graphviz:
+            options:
+                bin: '../GraphViz/bin/'
             compile:
                 files:
                     "./examples/simple.svg": "./examples/simple.dot"
@@ -95,12 +97,24 @@
                 files: 
                     src: scripts_with_eval
 
+        batch:
+            options:
+                cmd: (f) -> 
+                    path = f.src[0].replace('/','\\')
+                    c = "cmd /C \"#{process.cwd()}\\#{path}\""
+                    console.log c
+                    c
+
+            gui:
+                files:
+                    src: ['gui/run.bat'],
 
     grunt.loadNpmTasks 'grunt-contrib-nodeunit'
     grunt.loadNpmTasks 'grunt-contrib-coffee'
     grunt.loadNpmTasks 'grunt-contrib-jshint'
     grunt.loadNpmTasks 'grunt-contrib-watch'
     grunt.loadNpmTasks 'grunt-coffeelint'
+    grunt.loadNpmTasks 'grunt-batch'
     grunt.loadNpmTasks 'grunt-newer'
     
     grunt.loadTasks 'tasks'
@@ -109,3 +123,4 @@
     grunt.registerTask 'validate',  ['coffeelint', 'jshint']
     grunt.registerTask 'build',     ['coffee', 'validate']
     grunt.registerTask 'test',      ['nodeunit']
+    grunt.registerTask 'run',       ['batch']

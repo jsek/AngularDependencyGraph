@@ -31,6 +31,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="tests\parser\_script_1_fixture.coffee" />
+    <Content Include="gui\index.jade" />
+    <Content Include="gui\package.json" />
     <Content Include="README.md" />
     <Content Include="package.json" />
     <Compile Include="run.js" />
@@ -38,7 +40,6 @@
     <Content Include="Gruntfile.coffee" />
     <Compile Include="Gruntfile.js" />
     <Content Include="coffeelint.json" />
-    <Content Include="config\Config.coffee" />
     <Compile Include="tasks\generator.coffee" />
     <Compile Include="tasks\graphviz.coffee" />
     <Compile Include="src\parser\parser.coffee" />
@@ -61,7 +62,7 @@
     <Content Include="tests\utils\stringUtilsSpecs.coffee" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="config\" />
+    <Folder Include="gui\" />
     <Folder Include="src\formatter\" />
     <Folder Include="src\utils\" />
     <Folder Include="tasks\" />

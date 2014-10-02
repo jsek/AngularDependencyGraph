@@ -31,6 +31,9 @@
         }
       },
       graphviz: {
+        options: {
+          bin: '../GraphViz/bin/'
+        },
         compile: {
           files: {
             "./examples/simple.svg": "./examples/simple.dot",
@@ -90,6 +93,22 @@
             src: scripts_with_eval
           }
         }
+      },
+      batch: {
+        options: {
+          cmd: function(f) {
+            var c, path;
+            path = f.src[0].replace('/', '\\');
+            c = "cmd /C \"" + (process.cwd()) + "\\" + path + "\"";
+            console.log(c);
+            return c;
+          }
+        },
+        gui: {
+          files: {
+            src: ['gui/run.bat']
+          }
+        }
       }
     });
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
@@ -97,12 +116,14 @@
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-coffeelint');
+    grunt.loadNpmTasks('grunt-batch');
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadTasks('tasks');
     grunt.registerTask('default', ['generate', 'graphviz']);
     grunt.registerTask('validate', ['coffeelint', 'jshint']);
     grunt.registerTask('build', ['coffee', 'validate']);
-    return grunt.registerTask('test', ['nodeunit']);
+    grunt.registerTask('test', ['nodeunit']);
+    return grunt.registerTask('run', ['batch']);
   };
 
 }).call(this);
