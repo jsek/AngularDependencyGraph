@@ -7,7 +7,7 @@ if not defined PIL (
 )
 
 : cleanup oldfiles
-del %~dp0AngularGraphGenerator.zip
+if exist %~dp0AngularGraphGenerator.zip del %~dp0AngularGraphGenerator.zip
 
 : start application
 %~dp0\..\buildTools\7zip\7z.exe a %~dp0AngularGraphGenerator.zip %~dp0*
