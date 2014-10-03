@@ -13,6 +13,8 @@
     all_javaScript = all_coffeeScript
         .map (x) -> x.replace '.coffee', '.js' 
 
+    all_coffeeScript_andViews = all_coffeeScript.concat ['gui/views/jade/**/*.jade']
+
     scripts_with_eval = [
         "src/**/parser.js"
         "Gruntfile.js"
@@ -64,6 +66,19 @@
             options:
                 configFile: 'coffeelint.json'
       
+        jade:
+            compile:
+                options: 
+                    data: 
+                        debug: false
+                files: [ {
+                    cwd: "gui/views/jade",
+                    src: "**/*.jade",
+                    dest: "gui/views/html",
+                    expand: true,
+                    ext: ".html"
+                } ]
+
         nodeunit:
             options:
                 reporter: nodeunitReporter
@@ -71,11 +86,12 @@
 
         watch:
             coffeescript: 
-                files: all_coffeeScript
+                files: all_coffeeScript_andViews
                 tasks: [
                     'newer:coffeelint'
                     'newer:coffee'
                     'newer:jshint:all'
+                    'newer:jade'
                 ]
 
         jshint:
@@ -101,7 +117,7 @@
             options:
                 cmd: (f) -> 
                     path = f.src[0].replace('/','\\')
-                    c = "cmd /C \"#{process.cwd()}\\#{path}\""
+                    c = "cmd /C \"gulp && #{process.cwd()}\\#{path}\""
                     console.log c
                     c
 
@@ -112,6 +128,7 @@
     grunt.loadNpmTasks 'grunt-contrib-nodeunit'
     grunt.loadNpmTasks 'grunt-contrib-coffee'
     grunt.loadNpmTasks 'grunt-contrib-jshint'
+    grunt.loadNpmTasks 'grunt-contrib-jade'
     grunt.loadNpmTasks 'grunt-contrib-watch'
     grunt.loadNpmTasks 'grunt-coffeelint'
     grunt.loadNpmTasks 'grunt-batch'
@@ -121,6 +138,6 @@
 
     grunt.registerTask 'default',   ['generate', 'graphviz']
     grunt.registerTask 'validate',  ['coffeelint', 'jshint']
-    grunt.registerTask 'build',     ['coffee', 'validate']
+    grunt.registerTask 'build',     ['coffee', 'validate', 'jade']
     grunt.registerTask 'test',      ['nodeunit']
-    grunt.registerTask 'run',       ['batch']
+    grunt.registerTask 'run',       ['jade', 'batch:gui']

@@ -1,0 +1,30 @@
+{
+  "name": "AngularDependencyGraph",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jsek/AngularDependencyGraph",
+  "authors": [
+    "jsek <jsek.0.0.0.2@gmail.com>"
+  ],
+  "description": "Angular Dependency Graph Generator",
+  "main": "run.js",
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "gui/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "bootstrap": "~3.2.0",
+    "angularjs": "~1.2.26",
+    "angular-bootstrap": "~0.11.2",
+    "angular-resource": "~1.2.26",
+    "angular-route": "~1.2.26"
+  }
+}

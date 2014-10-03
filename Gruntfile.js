@@ -1,11 +1,12 @@
 (function() {
   module.exports = function(grunt) {
-    var all_coffeeScript, all_javaScript, jshintOptions, nodeunitReporter, scripts_with_eval;
+    var all_coffeeScript, all_coffeeScript_andViews, all_javaScript, jshintOptions, nodeunitReporter, scripts_with_eval;
     nodeunitReporter = process.env.ANGULARDEPENDENCYGRAPH_COVERAGE ? 'lcov' : 'default';
     all_coffeeScript = ['src/**/*.coffee', 'tasks/**/*.coffee', 'tests/**/*.coffee', 'config/**/*.coffee', 'Gruntfile.coffee'];
     all_javaScript = all_coffeeScript.map(function(x) {
       return x.replace('.coffee', '.js');
     });
+    all_coffeeScript_andViews = all_coffeeScript.concat(['gui/views/jade/**/*.jade']);
     scripts_with_eval = ["src/**/parser.js", "Gruntfile.js"];
     jshintOptions = {
       "-W030": true,
@@ -58,6 +59,24 @@
           configFile: 'coffeelint.json'
         }
       },
+      jade: {
+        compile: {
+          options: {
+            data: {
+              debug: false
+            }
+          },
+          files: [
+            {
+              cwd: "gui/views/jade",
+              src: "**/*.jade",
+              dest: "gui/views/html",
+              expand: true,
+              ext: ".html"
+            }
+          ]
+        }
+      },
       nodeunit: {
         options: {
           reporter: nodeunitReporter
@@ -66,8 +85,8 @@
       },
       watch: {
         coffeescript: {
-          files: all_coffeeScript,
-          tasks: ['newer:coffeelint', 'newer:coffee', 'newer:jshint:all']
+          files: all_coffeeScript_andViews,
+          tasks: ['newer:coffeelint', 'newer:coffee', 'newer:jshint:all', 'newer:jade']
         }
       },
       jshint: {
@@ -99,7 +118,7 @@
           cmd: function(f) {
             var c, path;
             path = f.src[0].replace('/', '\\');
-            c = "cmd /C \"" + (process.cwd()) + "\\" + path + "\"";
+            c = "cmd /C \"gulp && " + (process.cwd()) + "\\" + path + "\"";
             console.log(c);
             return c;
           }
@@ -114,6 +133,7 @@
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
     grunt.loadNpmTasks('grunt-contrib-coffee');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-jade');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-coffeelint');
     grunt.loadNpmTasks('grunt-batch');
@@ -121,9 +141,9 @@
     grunt.loadTasks('tasks');
     grunt.registerTask('default', ['generate', 'graphviz']);
     grunt.registerTask('validate', ['coffeelint', 'jshint']);
-    grunt.registerTask('build', ['coffee', 'validate']);
+    grunt.registerTask('build', ['coffee', 'validate', 'jade']);
     grunt.registerTask('test', ['nodeunit']);
-    return grunt.registerTask('run', ['batch']);
+    return grunt.registerTask('run', ['jade', 'batch']);
   };
 
 }).call(this);

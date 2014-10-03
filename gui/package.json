@@ -1,8 +1,8 @@
 ﻿{ 
   "name": "AngularDependencyGraph",
-  "main": "index.html",
+  "main": "views/html/index.html",
   "window": {
-    "toolbar": false,
+    "toolbar": true,
     "width": 800,
     "height": 600
   }
