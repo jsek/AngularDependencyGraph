@@ -10,7 +10,12 @@ config/**/*.js
 src/**/*.js
 tasks/**/*.js
 tests/**/*.js
+gui/dist
 .ntvs*
+
+#HTML
+gui/views/html
+
 
 # Runtime data
 pids
@@ -35,6 +40,8 @@ build/Release
 # Commenting this out is preferred by some people, see
 # https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
 node_modules
+gui/vendor
+
 
 # Users Environment Variables
 .lock-wscript
@@ -84,3 +91,4 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+*.suo
