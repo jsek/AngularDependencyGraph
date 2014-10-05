@@ -8,6 +8,7 @@
         'tests/**/*.coffee'
         'config/**/*.coffee'
         'Gruntfile.coffee'
+        'Gulpfile.coffee'
     ]
 
     all_javaScript = all_coffeeScript
@@ -65,19 +66,6 @@
             all: all_coffeeScript
             options:
                 configFile: 'coffeelint.json'
-      
-        jade:
-            compile:
-                options: 
-                    data: 
-                        debug: false
-                files: [ {
-                    cwd: "gui/views/jade",
-                    src: "**/*.jade",
-                    dest: "gui/views/html",
-                    expand: true,
-                    ext: ".html"
-                } ]
 
         nodeunit:
             options:
@@ -91,7 +79,6 @@
                     'newer:coffeelint'
                     'newer:coffee'
                     'newer:jshint:all'
-                    'newer:jade'
                 ]
 
         jshint:
@@ -117,7 +104,7 @@
             options:
                 cmd: (f) -> 
                     path = f.src[0].replace('/','\\')
-                    c = "cmd /C \"gulp && #{process.cwd()}\\#{path}\""
+                    c = "cmd /C \"#{process.cwd()}\\#{path}\""
                     console.log c
                     c
 
@@ -128,7 +115,6 @@
     grunt.loadNpmTasks 'grunt-contrib-nodeunit'
     grunt.loadNpmTasks 'grunt-contrib-coffee'
     grunt.loadNpmTasks 'grunt-contrib-jshint'
-    grunt.loadNpmTasks 'grunt-contrib-jade'
     grunt.loadNpmTasks 'grunt-contrib-watch'
     grunt.loadNpmTasks 'grunt-coffeelint'
     grunt.loadNpmTasks 'grunt-batch'
@@ -138,6 +124,6 @@
 
     grunt.registerTask 'default',   ['generate', 'graphviz']
     grunt.registerTask 'validate',  ['coffeelint', 'jshint']
-    grunt.registerTask 'build',     ['coffee', 'validate', 'jade']
+    grunt.registerTask 'build',     ['coffee', 'validate']
     grunt.registerTask 'test',      ['nodeunit']
-    grunt.registerTask 'run',       ['jade', 'batch:gui']
+    grunt.registerTask 'run',       ['batch:gui']

@@ -8,7 +8,6 @@ template    = require "../src/templates/graph-template"
 
 document = window = navigator = {}
 
-
 module.exports = (grunt) ->
 
     log = (source, destination) ->

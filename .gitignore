@@ -16,6 +16,9 @@ gui/dist
 #HTML
 gui/views/html
 
+#Sass
+.sass-cache
+
 
 # Runtime data
 pids
