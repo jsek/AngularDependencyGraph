@@ -4,8 +4,13 @@
 
 class AppConfig extends Config
     constructor:  ->
+        setTimeout ->
+            if $('.main').text() is 'Loading...'
+                swal
+                    title: 'Loading timeout'
+                    text: 'Looks like initialization takes longer than expected...'
+                    type: 'warning'
+                    button: 'OK'
+        , 3500
+    
 
-class Main extends Controller
-    constructor: ($scope, $rootScope) ->
-        $scope.test = 'World - Test'
-        $rootScope.test = 'World - Root'

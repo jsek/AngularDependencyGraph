@@ -32,8 +32,9 @@ compileCoffee = (action) ->
 compileSass = (options, action) ->
     options or= {}
     options.compass = true
+    options.sourcemap = false
     action or= gulp.src
-    action 'gui/styles/**/*.sass'
+    action 'gui/styles/**/*.scss'
         .pipe sass options
         .on 'error', gutil.log
 

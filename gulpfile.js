@@ -45,7 +45,7 @@
     options || (options = {});
     options.compass = true;
     action || (action = gulp.src);
-    return action('gui/styles/**/*.sass').pipe(sass(options)).on('error', gutil.log);
+    return action('gui/styles/**/*.scss').pipe(sass(options)).on('error', gutil.log);
   };
 
   compileJade = function(action) {
