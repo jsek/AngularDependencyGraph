@@ -16,5 +16,5 @@ if exist %Zip% del %Zip%
 %~dp0\..\buildTools\node-webkit\nw %Zip%
 
 : cleanup
-del %Zip%
+: del %Zip%
 exit
