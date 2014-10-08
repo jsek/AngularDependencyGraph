@@ -93,7 +93,7 @@ gulp.task 'release', ->
 #//
 
 gulp.task 'watch', ->
-    gulp.watch 'gui/styles/**/*.sass',   ['sass']  
+    gulp.watch 'gui/styles/**/*.scss',   ['sass']  
     gulp.watch 'gui/app/**/*.coffee',    ['coffee']
     gulp.watch 'gui/views/**/*.jade',    ['jade']
     gulp.watch 'gui/index.jade',         ['jade']
