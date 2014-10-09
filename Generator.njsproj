@@ -39,8 +39,10 @@
     <Content Include="gui\run.bat" />
     <Content Include="gui\styles\base\_all.scss" />
     <Content Include="gui\styles\base\_fonts.scss" />
+    <Content Include="gui\styles\base\_layout.scss" />
     <Content Include="gui\styles\components\_all.scss" />
-    <Content Include="gui\styles\components\_menu.scss" />
+    <Content Include="gui\styles\components\_search.scss" />
+    <Content Include="gui\styles\components\_sidebar.scss" />
     <Content Include="gui\styles\components\_sweetalert-fix.scss" />
     <Content Include="gui\styles\styles.scss" />
     <Content Include="gui\styles\var\_all.scss" />
