@@ -1,0 +1,12 @@
+﻿
+// TODO: expand field if loupe icon is clicked (hovered?)
+.quick-search {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 200px;
+
+    .form-control {
+        height: 25px;
+    }
+}

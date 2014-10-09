@@ -5,9 +5,33 @@ html
         include views/assets/_styles
         
     body(ng-app='app')
-        
-        .main
-            h3 Loading...
+        .container-fluid
+          .row
+            .col-sm-3.col-md-2.sidebar
+                ul.nav.nav-sidebar
+                    li.active
+                        a(href='#') 
+                            i.glyphicon.glyphicon-home
+                            | &nbsp; Home
+
+                    li.divider
+
+                    li.nav-header Reports
+
+                    li
+                        a(href='#') Untitled_1
+                    li
+                        a(href='#') Untitled_2
+
+                    
+
+            .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+                h3.page-header Loading...
+                
+                form.quick-search
+                    input.form-control(type='text', placeholder='Search...')
+
+
         
         include views/assets/_scripts3rdParty
         include views/assets/_scripts

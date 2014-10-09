@@ -44,6 +44,7 @@
   compileSass = function(options, action) {
     options || (options = {});
     options.compass = true;
+    options.sourcemap = false;
     action || (action = gulp.src);
     return action('gui/styles/**/*.scss').pipe(sass(options)).on('error', gutil.log);
   };
@@ -81,7 +82,7 @@
   });
 
   gulp.task('watch', function() {
-    gulp.watch('gui/styles/**/*.sass', ['sass']);
+    gulp.watch('gui/styles/**/*.scss', ['sass']);
     gulp.watch('gui/app/**/*.coffee', ['coffee']);
     gulp.watch('gui/views/**/*.jade', ['jade']);
     return gulp.watch('gui/index.jade', ['jade']);

@@ -1,9 +1,15 @@
-﻿{ 
-  "name": "AngularDependencyGraph",
-  "main": "dist/index.html",
-  "window": {
-    "toolbar": true,
-    "width": 800,
-    "height": 600
-  }
+﻿{
+    "name": "AngularDependencyGraph",
+    "main": "dist/index.html",
+    "window": {
+        "title"     : "Angular Dependency Graph Generator",
+        "show"      : false,
+        "toolbar"   : false,
+        "frame"     : true,
+        "position"  : "center",
+        "width"     : 800,
+        "height"    : 600,
+        "min_width" : 300,
+        "min_height": 250
+    }
 }
