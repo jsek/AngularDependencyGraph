@@ -37,7 +37,8 @@ coverage.bat
 .grunt
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
-build/Release
+cache
+build
 gui/*.zip
 
 # Dependency directory

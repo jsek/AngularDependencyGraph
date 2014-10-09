@@ -1,5 +1,5 @@
 (function() {
-  var coffee, compileCoffee, compileJade, compileSass, grep, gulp, gutil, jade, jadeInherit, ngAnnotate, ngClassify, sass, uglify;
+  var NwBuilder, coffee, compileCoffee, compileJade, compileSass, grep, gulp, gutil, jade, jadeInherit, ngAnnotate, ngClassify, sass, uglify;
 
   gulp = require('gulp');
 
@@ -20,6 +20,8 @@
   jadeInherit = require('gulp-jade-inheritance');
 
   grep = require('gulp-grep-stream');
+
+  NwBuilder = require('node-webkit-builder');
 
   compileCoffee = function(action) {
     action || (action = gulp.src);
@@ -57,29 +59,50 @@
     return action("gui/index.jade").pipe(jade()).on('error', gutil.log).pipe(gulp.dest('gui/dist/'));
   };
 
+  gulp.task('jade', function() {
+    return compileJade();
+  });
+
   gulp.task('sass', function() {
     return compileSass().pipe(gulp.dest('gui/dist/css'));
+  });
+
+  gulp.task('sassRelease', function() {
+    return compileSass({
+      style: 'compressed'
+    }).pipe(gulp.dest('gui/dist/css'));
   });
 
   gulp.task('coffee', function() {
     return compileCoffee().pipe(gulp.dest('gui/dist/js'));
   });
 
-  gulp.task('jade', function() {
-    return compileJade();
-  });
-
-  gulp.task('debug', ['sass', 'coffee', 'jade']);
-
-  gulp.task('release', function() {
-    compileCoffee().pipe(uglify({
+  gulp.task('coffeeRelease', function() {
+    return compileCoffee().pipe(uglify({
       mangle: true
     })).pipe(gulp.dest('gui/dist/js'));
-    compileSass({
-      style: 'compressed'
-    }).pipe(gulp.dest('gui/dist/css'));
-    return compileJade();
   });
+
+  gulp.task('buildExecutable', function() {
+    var nw;
+    nw = new NwBuilder({
+      version: '0.10.5',
+      files: ['./package.json', './gui/dist/**', './gui/vendor/**'],
+      platforms: ['win']
+    });
+    nw.on('log', function(msg) {
+      return gutil.log('node-webkit-builder', msg);
+    });
+    return nw.build()["catch"](function(err) {
+      return gutil.log('node-webkit-builder', err);
+    });
+  });
+
+  gulp.task('build', ['buildExecutable']);
+
+  gulp.task('compileDebug', ['sass', 'coffee', 'jade']);
+
+  gulp.task('compileRelease', ['sassRelease', 'coffeeRelease', 'jade']);
 
   gulp.task('watch', function() {
     gulp.watch('gui/styles/**/*.scss', ['sass']);
@@ -87,17 +110,5 @@
     gulp.watch('gui/views/**/*.jade', ['jade']);
     return gulp.watch('gui/index.jade', ['jade']);
   });
-
-
-  /*
-  gulp.task 'watch', ->
-      compileCoffee watch
-          .pipe gulp.dest 'gui/dist/js'
-  
-      compileSass {}, gulp.watch
-          .pipe gulp.dest 'gui/dist/css'
-  
-      compileJade gulp.watch
-   */
 
 }).call(this);

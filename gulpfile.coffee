@@ -8,6 +8,7 @@ sass        = require 'gulp-ruby-sass'
 jade        = require 'gulp-jade'
 jadeInherit = require 'gulp-jade-inheritance'
 grep        = require 'gulp-grep-stream'
+NwBuilder   = require 'node-webkit-builder'
 
 
 #///////////////////////////
@@ -28,7 +29,6 @@ compileCoffee = (action) ->
 
         .pipe ngAnnotate { add:true, single_quotes: true }
 
-
 compileSass = (options, action) ->
     options or= {}
     options.compass = true
@@ -37,7 +37,6 @@ compileSass = (options, action) ->
     action 'gui/styles/**/*.scss'
         .pipe sass options
         .on 'error', gutil.log
-
 
 compileJade = (action) ->
     action or= gulp.src
@@ -58,34 +57,48 @@ compileJade = (action) ->
 #// Exposed Gulp tasks
 #//
 
+gulp.task 'jade', ->
+    compileJade()
+
 gulp.task 'sass', ->
     compileSass()
+        .pipe gulp.dest 'gui/dist/css'
+
+gulp.task 'sassRelease', ->
+    compileSass { style: 'compressed' }
         .pipe gulp.dest 'gui/dist/css'
 
 gulp.task 'coffee', ->
     compileCoffee()
         .pipe gulp.dest 'gui/dist/js'
 
-gulp.task 'jade', ->
-    compileJade()
+gulp.task 'coffeeRelease', ->
+    compileCoffee()
+        .pipe uglify { mangle: true }
+        .pipe gulp.dest 'gui/dist/js'
+
+gulp.task 'buildExecutable', ->
+    nw = new NwBuilder
+        version: '0.10.5'
+        files: ['./package.json', './gui/dist/**', './gui/vendor/**'] # 'gui/node_modules/**',
+        platforms: ['win']
+    
+    nw.on 'log', (msg) ->
+        gutil.log 'node-webkit-builder', msg
+    
+    nw.build().catch (err) ->
+        gutil.log 'node-webkit-builder', err
 
 
 #///////////////////////////
 #// Main pipes
 #//
 
-gulp.task 'debug', ['sass', 'coffee', 'jade']
+gulp.task 'build', ['buildExecutable']
 
-gulp.task 'release', ->
-    
-    compileCoffee()
-        .pipe uglify { mangle: true }
-        .pipe gulp.dest 'gui/dist/js'
+gulp.task 'compileDebug', ['sass', 'coffee', 'jade']
 
-    compileSass { style: 'compressed' }
-        .pipe gulp.dest 'gui/dist/css'
-
-    compileJade()
+gulp.task 'compileRelease', ['sassRelease', 'coffeeRelease', 'jade']
 
 
 #///////////////////////////
@@ -97,15 +110,3 @@ gulp.task 'watch', ->
     gulp.watch 'gui/app/**/*.coffee',    ['coffee']
     gulp.watch 'gui/views/**/*.jade',    ['jade']
     gulp.watch 'gui/index.jade',         ['jade']
-
-###
-gulp.task 'watch', ->
-    compileCoffee watch
-        .pipe gulp.dest 'gui/dist/js'
-
-    compileSass {}, gulp.watch
-        .pipe gulp.dest 'gui/dist/css'
-
-    compileJade gulp.watch
-
-###
