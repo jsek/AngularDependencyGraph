@@ -3,6 +3,9 @@
 [![Build Status](https://travis-ci.org/jsek/AngularDependencyGraph.svg?branch=master)](https://travis-ci.org/jsek/AngularDependencyGraph) [![Coverage Status](https://coveralls.io/repos/jsek/AngularDependencyGraph/badge.png)](https://coveralls.io/r/jsek/AngularDependencyGraph)
 
 ### Prerequisites
+* Visual Studio or WebStorm or Sublime
+* Node Tools for Visual Studio (disable Intellisence if using Beta)
+* Any plugin for Sass support in Visual Studio
 * GraphViz extracted next to project directory (path is defined in config/Config.coffee)
 * [Task Runner Explorer](http://visualstudiogallery.msdn.microsoft.com/8e1b4368-4afb-467a-bc13-9650572db708)
 
