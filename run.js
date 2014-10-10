@@ -4,4 +4,5 @@
 require('./Gruntfile.js');
 
 // execute
-grunt.tasks(['default']);
+//grunt.tasks(['default']);
+grunt.tasks(['run']);
