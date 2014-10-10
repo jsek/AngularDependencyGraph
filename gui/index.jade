@@ -1,8 +1,8 @@
 ﻿doctype
 html
     head
-        include views/assets/_styles3rdParty
-        include views/assets/_styles
+        include layout/_styles3rdParty
+        include layout/_styles
         
     body(ng-app='app')
         .container-fluid
@@ -16,7 +16,7 @@ html
 
                     li.divider
 
-                    li.nav-header Reports
+                    li.nav-header Projects
 
                     li
                         a(href='#') Untitled_1
@@ -25,13 +25,13 @@ html
 
                     
 
-            .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+            .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main(ng-controller='introController')
                 h3.page-header Loading...
                 
-                form.quick-search
-                    input.form-control(type='text', placeholder='Search...')
+            form.quick-search(ng-controller="searchController")
+                input.form-control(type='text', placeholder='Search...')
 
 
         
-        include views/assets/_scripts3rdParty
-        include views/assets/_scripts
+        include layout/_scripts3rdParty
+        include layout/_scripts

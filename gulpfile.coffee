@@ -6,9 +6,13 @@ uglify      = require 'gulp-uglify'
 ngClassify  = require 'gulp-ng-classify'
 sass        = require 'gulp-ruby-sass'
 jade        = require 'gulp-jade'
-jadeInherit = require 'gulp-jade-inheritance'
-grep        = require 'gulp-grep-stream'
 NwBuilder   = require 'node-webkit-builder'
+
+
+modulesForGUI = [
+    './node_modules/node-fs/**'
+    './node_modules/jade/**'
+]
 
 
 #///////////////////////////
@@ -23,7 +27,7 @@ compileCoffee = (action) ->
                 { appName: 'admin' }
             else
                 { appName: 'app' }
-        #.pipe gulp.dest 'gui/dist/scripts-classified'
+        .pipe gulp.dest 'gui/dist/coffee'
         .pipe coffee { bare: true }
         .on 'error', gutil.log
 
@@ -40,13 +44,6 @@ compileSass = (options, action) ->
 
 compileJade = (action) ->
     action or= gulp.src
-    action 'gui/views/**/*.jade'
-        .pipe jadeInherit { basedir: '/gui/' }
-        .pipe jade()
-        #.pipe grep '_*'
-        .on 'error', gutil.log
-        .pipe gulp.dest 'gui/dist/views'
-
     action "gui/index.jade"
         .pipe jade()
         .on 'error', gutil.log
@@ -63,7 +60,7 @@ gulp.task 'jade', ->
 gulp.task 'sass', ->
     compileSass()
         .pipe gulp.dest 'gui/dist/css'
-
+        
 gulp.task 'sassRelease', ->
     compileSass { style: 'compressed' }
         .pipe gulp.dest 'gui/dist/css'
@@ -80,7 +77,7 @@ gulp.task 'coffeeRelease', ->
 gulp.task 'buildExecutable', ->
     nw = new NwBuilder
         version: '0.10.5'
-        files: ['./package.json', './gui/dist/**', './gui/vendor/**'] # 'gui/node_modules/**',
+        files: ['./package.json', './gui/dist/**', './gui/vendor/**', './gui/views/**'].concat modulesForGUI
         platforms: ['win']
     
     nw.on 'log', (msg) ->
@@ -94,11 +91,11 @@ gulp.task 'buildExecutable', ->
 #// Main pipes
 #//
 
-gulp.task 'build', ['buildExecutable']
-
 gulp.task 'compileDebug', ['sass', 'coffee', 'jade']
 
 gulp.task 'compileRelease', ['sassRelease', 'coffeeRelease', 'jade']
+
+gulp.task 'build', ['compileRelease', 'buildExecutable']
 
 
 #///////////////////////////
@@ -108,5 +105,5 @@ gulp.task 'compileRelease', ['sassRelease', 'coffeeRelease', 'jade']
 gulp.task 'watch', ->
     gulp.watch 'gui/styles/**/*.scss',   ['sass']  
     gulp.watch 'gui/app/**/*.coffee',    ['coffee']
-    gulp.watch 'gui/views/**/*.jade',    ['jade']
+    gulp.watch 'gui/layout/**/*.jade',   ['jade']
     gulp.watch 'gui/index.jade',         ['jade']

@@ -1,5 +1,5 @@
 (function() {
-  var NwBuilder, coffee, compileCoffee, compileJade, compileSass, grep, gulp, gutil, jade, jadeInherit, ngAnnotate, ngClassify, sass, uglify;
+  var NwBuilder, coffee, compileCoffee, compileJade, compileSass, gulp, gutil, jade, modulesForGUI, ngAnnotate, ngClassify, sass, uglify;
 
   gulp = require('gulp');
 
@@ -17,11 +17,9 @@
 
   jade = require('gulp-jade');
 
-  jadeInherit = require('gulp-jade-inheritance');
-
-  grep = require('gulp-grep-stream');
-
   NwBuilder = require('node-webkit-builder');
+
+  modulesForGUI = ['./node_modules/node-fs/**', './node_modules/jade/**'];
 
   compileCoffee = function(action) {
     action || (action = gulp.src);
@@ -35,7 +33,7 @@
           appName: 'app'
         };
       }
-    })).pipe(coffee({
+    })).pipe(gulp.dest('gui/dist/coffee')).pipe(coffee({
       bare: true
     })).on('error', gutil.log).pipe(ngAnnotate({
       add: true,
@@ -53,9 +51,6 @@
 
   compileJade = function(action) {
     action || (action = gulp.src);
-    action('gui/views/**/*.jade').pipe(jadeInherit({
-      basedir: '/gui/'
-    })).pipe(jade()).on('error', gutil.log).pipe(gulp.dest('gui/dist/views'));
     return action("gui/index.jade").pipe(jade()).on('error', gutil.log).pipe(gulp.dest('gui/dist/'));
   };
 
@@ -87,7 +82,7 @@
     var nw;
     nw = new NwBuilder({
       version: '0.10.5',
-      files: ['./package.json', './gui/dist/**', './gui/vendor/**'],
+      files: ['./package.json', './gui/dist/**', './gui/vendor/**', './gui/views/**'].concat(modulesForGUI),
       platforms: ['win']
     });
     nw.on('log', function(msg) {
@@ -98,16 +93,16 @@
     });
   });
 
-  gulp.task('build', ['buildExecutable']);
-
   gulp.task('compileDebug', ['sass', 'coffee', 'jade']);
 
   gulp.task('compileRelease', ['sassRelease', 'coffeeRelease', 'jade']);
 
+  gulp.task('build', ['compileRelease', 'buildExecutable']);
+
   gulp.task('watch', function() {
     gulp.watch('gui/styles/**/*.scss', ['sass']);
     gulp.watch('gui/app/**/*.coffee', ['coffee']);
-    gulp.watch('gui/views/**/*.jade', ['jade']);
+    gulp.watch('gui/layout/**/*.jade', ['jade']);
     return gulp.watch('gui/index.jade', ['jade']);
   });
 
