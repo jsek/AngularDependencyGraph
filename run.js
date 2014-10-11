@@ -1,8 +1,7 @@
-﻿var grunt = require('grunt');
-
-// configure
-require('./Gruntfile.js');
-
-// execute
+﻿//var grunt = require('grunt');
+//require('./Gruntfile.js');
 //grunt.tasks(['default']);
-grunt.tasks(['run']);
+
+var gulp = require('gulp');
+require('./Gulpfile.js');
+gulp.start('default');

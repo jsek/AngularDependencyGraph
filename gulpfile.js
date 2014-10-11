@@ -1,9 +1,11 @@
 (function() {
-  var NwBuilder, coffee, compileCoffee, compileJade, compileSass, gulp, gutil, jade, modulesForGUI, ngAnnotate, ngClassify, sass, uglify;
+  var NwBuilder, artefacts, coffee, compileCoffee, compileJade, compileSass, gulp, gutil, jade, ngAnnotate, ngClassify, sass, shell, uglify;
 
   gulp = require('gulp');
 
   gutil = require('gulp-util');
+
+  shell = require('gulp-shell');
 
   coffee = require('gulp-coffee');
 
@@ -19,7 +21,7 @@
 
   NwBuilder = require('node-webkit-builder');
 
-  modulesForGUI = ['./node_modules/node-fs/**', './node_modules/jade/**'];
+  artefacts = ['gui/dist/**', 'gui/resources/**', 'gui/vendor/**', 'gui/views/**', 'package.json', 'node_modules/jade/**', 'node_modules/node-fs/**'];
 
   compileCoffee = function(action) {
     action || (action = gulp.src);
@@ -82,8 +84,10 @@
     var nw;
     nw = new NwBuilder({
       version: '0.10.5',
-      files: ['./package.json', './gui/dist/**', './gui/vendor/**', './gui/views/**'].concat(modulesForGUI),
-      platforms: ['win']
+      files: artefacts,
+      platforms: ['win'],
+      winIco: 'gui/resources/model.ico',
+      buildDir: 'bin'
     });
     nw.on('log', function(msg) {
       return gutil.log('node-webkit-builder', msg);
@@ -93,11 +97,19 @@
     });
   });
 
+  gulp.task('buildAndRun', shell.task(['gulp buildExecutable && cmd /C "start .\\bin\\AngularDependencyGraph\\win\\AngularDependencyGraph.exe"']));
+
+  gulp.task('run', shell.task(['cmd /C "start .\\bin\\AngularDependencyGraph\\win\\AngularDependencyGraph.exe"']));
+
   gulp.task('compileDebug', ['sass', 'coffee', 'jade']);
 
   gulp.task('compileRelease', ['sassRelease', 'coffeeRelease', 'jade']);
 
   gulp.task('build', ['compileRelease', 'buildExecutable']);
+
+  gulp.task('default', ['compileRelease', 'buildExecutable', 'run']);
+
+  gulp.task('debug', ['buildAndRun']);
 
   gulp.task('watch', function() {
     gulp.watch('gui/styles/**/*.scss', ['sass']);

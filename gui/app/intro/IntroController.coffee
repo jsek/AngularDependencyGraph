@@ -5,6 +5,6 @@ jade = require 'jade'
 class Intro extends Controller
     constructor: -> # (newProjectFactory, importProjectService, recentProjectsService) ->
         
-        @template = jade.compile fs.readFileSync('./views/intro.jade')
+        @template = jade.compile fs.readFileSync('gui/views/intro.jade')
             
         $('.main').html @template({title:"Angular Module Graph Generator"})

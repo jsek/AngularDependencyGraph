@@ -10,6 +10,6 @@ class Search extends Controller
         
         @container = $('.quick-search')
 
-        $scope.expand ->
+        $scope.expand = ->
             # autofocus input
             # bind event on focusout (here?)

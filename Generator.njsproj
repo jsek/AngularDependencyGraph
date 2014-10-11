@@ -40,8 +40,8 @@
     <Content Include="gui\app\system\GlobalExceptionHandler.coffee" />
     <Content Include="gui\app\intro\IntroController.coffee" />
     <Content Include="gui\index.jade" />
-    <Content Include="gui\package.json" />
-    <Content Include="gui\run.bat" />
+    <Content Include="gui\resources\model.ico" />
+    <Content Include="gui\resources\model.png" />
     <Content Include="gui\styles\base\_all.scss" />
     <Content Include="gui\styles\base\_fonts.scss" />
     <Content Include="gui\styles\base\_layout.scss" />
@@ -94,6 +94,7 @@
     <Folder Include="gui\app\search\" />
     <Folder Include="gui\app\system\" />
     <Folder Include="gui\layout\" />
+    <Folder Include="gui\resources\" />
     <Folder Include="gui\styles\" />
     <Folder Include="gui\styles\base\" />
     <Folder Include="gui\styles\components\" />
