@@ -4,7 +4,7 @@
   "main": "gui/dist/index.html",
   "window": {
     "title": "Angular Dependency Graph Generator",
-    "icon": "gui/resources/model.ico",
+    "icon": "gui/resources/model.png",
     "show": false,
     "toolbar": false,
     "frame": true,
