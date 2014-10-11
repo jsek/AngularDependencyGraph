@@ -1,4 +1,7 @@
-﻿ 
+﻿fs = require 'node-fs'
+eval fs.readFileSync('src/utils/stringUtils.js').toString()
+eval fs.readFileSync('src/utils/arrayUtils.js').toString()
+
 class App extends App
     constructor: ->
         return ['ngRoute', 'ui.bootstrap']

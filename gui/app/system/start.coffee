@@ -2,4 +2,5 @@
 
 $ ->
     win = gui.Window.get()
-    win.show()    
+    win.show()
+    win.requestAttention 2

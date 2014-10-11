@@ -16,7 +16,7 @@ artefacts = [
     'gui/vendor/**'
     'gui/views/**'
     'package.json'
-
+    'src/utils/**'
     'node_modules/jade/**'
     'node_modules/node-fs/**'
 ]

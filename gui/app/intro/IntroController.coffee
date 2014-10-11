@@ -1,10 +1,15 @@
-﻿fs = require 'node-fs'
-jade = require 'jade'
+﻿class Intro extends Controller
+    constructor: (mainViewService, newProjectService) ->
 
-# TODO: Remove Angular ?
-class Intro extends Controller
-    constructor: -> # (newProjectFactory, importProjectService, recentProjectsService) ->
+        newProject = ->
+            newProjectService.show()             
         
-        @template = jade.compile fs.readFileSync('gui/views/intro.jade')
-            
-        $('.main').html @template({title:"Angular Module Graph Generator"})
+        importProject = ->
+            sweetAlert { title: '!' }
+
+        mainViewService.set 'intro.jade', { title:"Angular Module Graph Generator" }
+
+        mainViewService.find('.new-project').click newProject
+        mainViewService.find('.import-project').click importProject
+        
+        console.log '>> [Intro] loaded'

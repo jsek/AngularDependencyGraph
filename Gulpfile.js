@@ -21,7 +21,7 @@
 
   NwBuilder = require('node-webkit-builder');
 
-  artefacts = ['gui/dist/**', 'gui/resources/**', 'gui/vendor/**', 'gui/views/**', 'package.json', 'node_modules/jade/**', 'node_modules/node-fs/**'];
+  artefacts = ['gui/dist/**', 'gui/resources/**', 'gui/vendor/**', 'gui/views/**', 'package.json', 'src/utils/**', 'node_modules/jade/**', 'node_modules/node-fs/**'];
 
   compileCoffee = function(action) {
     action || (action = gulp.src);
