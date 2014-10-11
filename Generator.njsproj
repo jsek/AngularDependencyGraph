@@ -35,6 +35,7 @@
     <Content Include="gui\app\app.coffee" />
     <Content Include="gui\app\projects\NewProjectController.coffee" />
     <Content Include="gui\app\projects\RecentProjectsController.coffee" />
+    <Content Include="gui\app\projects\ProjectController.coffee" />
     <Content Include="gui\app\sidebar\SidebarController.coffee" />
     <Content Include="gui\app\projects\ProjectListService.coffee" />
     <Content Include="gui\app\utils\MainViewService.coffee" />
@@ -63,6 +64,7 @@
     <Content Include="gui\layout\_styles.jade" />
     <Content Include="gui\layout\_styles3rdParty.jade" />
     <Content Include="gui\views\error.jade" />
+    <Content Include="gui\views\projectContent.jade" />
     <Content Include="gui\views\newProject.jade" />
     <Content Include="gui\views\intro.jade" />
     <Content Include="Gulpfile.coffee" />

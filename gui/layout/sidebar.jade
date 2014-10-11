@@ -11,4 +11,4 @@
             li.nav-header Projects
             
             li(ng-repeat='project in projects', ng-class='{"active": currentView == project.id }')
-                a(href='project.path') {{ project.name }}
+                a(ng-click='open(project.id)') {{ project.name }}

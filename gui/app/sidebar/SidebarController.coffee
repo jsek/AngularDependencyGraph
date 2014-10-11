@@ -1,6 +1,6 @@
 ﻿class Sidebar extends Controller
     
-    constructor: (mainViewService, $scope, projectListService) ->
+    constructor: (mainViewService, $scope, projectListService, projectNavigationService) ->
         
         # Dummy data
         $scope.projects = [
@@ -16,3 +16,9 @@
 
         projectListService.on 'add', (project) ->
             $scope.projects.push project
+
+        $scope.open = (projectId) ->
+            project = $scope.projects.find (x) -> x.id is projectId
+            mainViewService.set 'projectContent.jade', $scope
+            projectNavigationService.set project
+            
