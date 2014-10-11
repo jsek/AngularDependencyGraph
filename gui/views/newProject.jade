@@ -1,13 +1,20 @@
 ﻿
 h3.page-header New Project
-small Choose name and location for new project
-    
-hr
-.row
-    .col-xs-12
-        input.form-control(type='text', placeholder='Choose project name')
-        input.form-control(type='text', placeholder='Choose location')
-        br
-        .btn.btn-success.create-project Create
+
+.row(ng-controller='newProjectController')
+
+    form.col-xs-12(name='newProjectForm')
+
+        .form-group(ng-class='{ "has-error" : newProjectForm.name.$invalid && !newProjectForm.name.$pristine }')
+            label.control-label Name
+            input.form-control(type='text', name='name', ng-model='project.name', required="required", placeholder='Choose project name', autofocus='autofocus')
+            small.help-block(ng-show='newProjectForm.name.$invalid && !newProjectForm.name.$pristine') Required
+        
+        .form-group(ng-class='{ "has-error" : newProjectForm.path.$invalid && !newProjectForm.path.$pristine }')
+            label.control-label Location
+            input.form-control(type='text', name='path', ng-model='project.path', required='required')
+            small.help-block(ng-show='newProjectForm.path.$invalid && !newProjectForm.path.$pristine') Required
+
+        input.btn.btn-success(type='button', ng-click='createProject(newProjectForm.$valid)', value='Create')
         | &nbsp;
-        .btn.cancel Cancel
+        .btn.btn-default(ng-click='goBack()') Cancel

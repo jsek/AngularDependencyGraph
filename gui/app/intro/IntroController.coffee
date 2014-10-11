@@ -1,15 +1,10 @@
 ﻿class Intro extends Controller
-    constructor: (mainViewService, newProjectService) ->
+    constructor: (mainViewService, $scope) ->
 
-        newProject = ->
-            newProjectService.show()             
-        
-        importProject = ->
-            sweetAlert { title: '!' }
+        $scope.title = "Angular Module Graph Generator"
+        $scope.newProject = -> mainViewService.set 'newProject.jade', $scope
+        $scope.importProject = -> sweetAlert { title: '!' }
 
-        mainViewService.set 'intro.jade', { title:"Angular Module Graph Generator" }
+        mainViewService.set 'intro.jade', $scope
 
-        mainViewService.find('.new-project').click newProject
-        mainViewService.find('.import-project').click importProject
-        
         console.log '>> [Intro] loaded'

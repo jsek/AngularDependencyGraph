@@ -8,37 +8,52 @@ class MainView extends Service
     _wasAlreadySet = false
     _shadowDOM = $('<div>')
     
-    constructor: ->
-        @main = $('.main')
-        _shadowDOM.insertBefore(@main).hide()
+    _compilator = {}
+
+    _listeners = {}
+    
+    constructor: ($compile) ->
+        _compilator = $compile
+        @container = $('.main')
+        _shadowDOM.insertBefore(@container).hide()
                 
-    set: (filename, data, ignoreHistory = false) ->
+    set: (filename, $scope, ignoreHistory = false) ->
 
         _history.push(filename) unless ignoreHistory
 
+        @trigger 'change', filename
+
         if _templates[filename]?
-            @main.children().detach().appendTo _shadowDOM
-            _shadowDOM.children("[data-template='#{filename}']").detach().appendTo @main
+            @container.children().detach().appendTo _shadowDOM
+            _shadowDOM.children("[data-template='#{filename}']").detach().appendTo @container
             _wasAlreadySet = true
         else
             template = jade.compile fs.readFileSync("gui/views/#{filename}")
-            compiledHTML = template data
+            compiledHTML = _compilator(template())($scope)
             
             newContent = $("<div data-template='#{filename}'></div>")
             newContent.html compiledHTML
 
-            @main.children().detach().appendTo _shadowDOM
-            @main.append newContent
+            @container.children().detach().appendTo _shadowDOM
+            @container.append newContent
 
             _templates[filename] = newContent
             _wasAlreadySet = false
 
         
     find: (selector) ->
-        @main.find selector
+        @container.find selector
 
     wasAlreadySet: -> _wasAlreadySet
         
     back: ->
         _history.pop()
         @set _history.last(), null, true
+
+
+    trigger: (event, data) ->
+        listener(data) for listener in _listeners[event]
+
+    'on': (event, fn) ->
+        _listeners[event] or= []
+        _listeners[event].push fn 

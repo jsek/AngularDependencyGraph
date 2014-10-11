@@ -1,0 +1,14 @@
+﻿.row
+    .col-sm-3.col-md-2.sidebar
+        ul.nav.nav-sidebar(ng-controller='sidebarController')
+            li(ng-class='{"active": currentView == "intro.jade"}')
+                a(href='javascript:void(0)', ng-click='goHome()') 
+                    i.glyphicon.glyphicon-home
+                    | &nbsp; Home
+
+            li.divider
+
+            li.nav-header Projects
+            
+            li(ng-repeat='project in projects', ng-class='{"active": currentView == project.id }')
+                a(href='project.path') {{ project.name }}

@@ -1,15 +1,18 @@
 ﻿
 h3.page-header Home
-small
+p
     | Welcome to 
-    strong #{title}
+    strong {{ title }}
 hr
 .row
-    .col-xs-8
-        .btn.btn-primary.new-project New project
+    .col-sm-8
+        .btn.btn-primary(ng-click="newProject()") New project
         | &nbsp;
-        .btn.btn-info.import-project Import
+        .btn.btn-info(ng-click="importProject()") Import
 
-    .col-xs-3
-        h4 Recent
-        p ...
+    .col-sm-4(ng-controller='recentProjectsController')
+        ul.nav.nav-sidebar
+            li.nav-header Recent
+
+            li(ng-repeat='project in projects')
+                a(href='project.path') {{ project.name }}

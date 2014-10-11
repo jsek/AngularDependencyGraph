@@ -33,7 +33,10 @@
     <Compile Include="tests\parser\_script_1_fixture.coffee" />
     <Content Include="bower.json" />
     <Content Include="gui\app\app.coffee" />
-    <Content Include="gui\app\intro\NewProjectService.coffee" />
+    <Content Include="gui\app\projects\NewProjectController.coffee" />
+    <Content Include="gui\app\projects\RecentProjectsController.coffee" />
+    <Content Include="gui\app\sidebar\SidebarController.coffee" />
+    <Content Include="gui\app\projects\ProjectListService.coffee" />
     <Content Include="gui\app\utils\MainViewService.coffee" />
     <Content Include="gui\app\search\SearchController.coffee" />
     <Content Include="gui\app\system\ContextMenu.coffee" />
@@ -42,6 +45,7 @@
     <Content Include="gui\app\system\GlobalExceptionHandler.coffee" />
     <Content Include="gui\app\intro\IntroController.coffee" />
     <Content Include="gui\index.jade" />
+    <Content Include="gui\layout\sidebar.jade" />
     <Content Include="gui\resources\model.ico" />
     <Content Include="gui\resources\model.png" />
     <Content Include="gui\styles\base\_all.scss" />
@@ -94,6 +98,8 @@
     <Folder Include="gui\" />
     <Folder Include="gui\app\" />
     <Folder Include="gui\app\intro\" />
+    <Folder Include="gui\app\sidebar\" />
+    <Folder Include="gui\app\projects\" />
     <Folder Include="gui\app\utils\" />
     <Folder Include="gui\app\search\" />
     <Folder Include="gui\app\system\" />

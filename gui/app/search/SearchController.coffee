@@ -6,7 +6,7 @@ jade = require 'jade'
     # Collapse by default
 
 class Search extends Controller
-    constructor: ($scope) -> # (newProjectFactory, importProjectService, recentProjectsService) ->
+    constructor: ($scope) ->
         
         @container = $('.quick-search')
 
