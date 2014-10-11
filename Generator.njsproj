@@ -58,7 +58,7 @@
     <Content Include="gui\layout\_styles3rdParty.jade" />
     <Content Include="gui\views\error.jade" />
     <Content Include="gui\views\intro.jade" />
-    <Content Include="gulpfile.coffee" />
+    <Content Include="Gulpfile.coffee" />
     <Content Include="README.md" />
     <Content Include="package.json" />
     <Compile Include="run.js" />
