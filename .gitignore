@@ -38,7 +38,7 @@ coverage.bat
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 cache
-build
+bin
 gui/*.zip
 
 # Dependency directory
