@@ -1,12 +1,8 @@
 ﻿class Sidebar extends Controller
     
-    constructor: (mainViewService, $scope, projectListService, projectNavigationService) ->
+    constructor: (mainViewService, $scope, projectListService, projectNavigationService, projectRepositoryService) ->
         
-        # Dummy data
-        $scope.projects = [
-            { id: 1, name: 'Untitled1', path: 'C:\\Temp' }
-            { id: 2, name: 'Demo', path: 'C:\\Documents\\Reports\\Demo' }
-        ]
+        $scope.projects = projectRepositoryService.getProjects()
 
         mainViewService.on 'change', (filename) ->
             $scope.currentView = filename

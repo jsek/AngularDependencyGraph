@@ -4,7 +4,7 @@ eval fs.readFileSync('src/utils/arrayUtils.js').toString()
 
 class App extends App
     constructor: ->
-        return ['ngRoute', 'ui.bootstrap']
+        return ['ngRoute', 'ui.bootstrap', 'DWand.nw-fileDialog']
 
 class AppConfig extends Config
     constructor: ->

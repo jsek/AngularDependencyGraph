@@ -1,12 +1,8 @@
 ﻿class RecentProjects extends Controller
     
-    constructor: (mainViewService, $scope, projectListService) ->
+    constructor: (mainViewService, $scope, projectListService, projectRepositoryService) ->
         
-        # TODO: Load from central repo
-        $scope.projects = [
-            { id: 1, name: 'Untitled1', path: 'C:\\Temp' }
-            { id: 2, name: 'Demo', path: 'C:\\Documents\\Reports\\Demo' }
-        ]
+        $scope.projects = projectRepositoryService.getProjects()
 
         projectListService.on 'add', (project) ->
             $scope.projects.splice 0, 0, project

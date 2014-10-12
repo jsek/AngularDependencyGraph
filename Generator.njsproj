@@ -34,10 +34,12 @@
     <Content Include="bower.json" />
     <Content Include="gui\app\app.coffee" />
     <Content Include="gui\app\projects\NewProjectController.coffee" />
+    <Content Include="gui\app\projects\ProjectListService.coffee" />
+    <Content Include="gui\app\projects\ProjectRepositoryService.coffee" />
     <Content Include="gui\app\projects\RecentProjectsController.coffee" />
     <Content Include="gui\app\projects\ProjectController.coffee" />
     <Content Include="gui\app\sidebar\SidebarController.coffee" />
-    <Content Include="gui\app\projects\ProjectListService.coffee" />
+    <Content Include="gui\app\projects\ProjectNavigationService.coffee" />
     <Content Include="gui\app\utils\MainViewService.coffee" />
     <Content Include="gui\app\search\SearchController.coffee" />
     <Content Include="gui\app\system\ContextMenu.coffee" />
@@ -45,6 +47,7 @@
     <Content Include="gui\app\system\Start.coffee" />
     <Content Include="gui\app\system\GlobalExceptionHandler.coffee" />
     <Content Include="gui\app\intro\IntroController.coffee" />
+    <Content Include="gui\app\utils\nwFileDialog.coffee" />
     <Content Include="gui\index.jade" />
     <Content Include="gui\layout\sidebar.jade" />
     <Content Include="gui\resources\model.ico" />
@@ -57,6 +60,9 @@
     <Content Include="gui\styles\components\_sidebar.scss" />
     <Content Include="gui\styles\components\_sweetalert-fix.scss" />
     <Content Include="gui\styles\styles.scss" />
+    <Content Include="gui\styles\themes\bootstrap-theme-cosmo.min.css" />
+    <Content Include="gui\styles\themes\bootstrap-theme-slate.min.css" />
+    <Content Include="gui\styles\themes\bootstrap-theme-superhero.min.css" />
     <Content Include="gui\styles\var\_all.scss" />
     <Content Include="gui\styles\var\_colors.scss" />
     <Content Include="gui\layout\_scripts.jade" />
@@ -110,6 +116,7 @@
     <Folder Include="gui\styles\" />
     <Folder Include="gui\styles\base\" />
     <Folder Include="gui\styles\components\" />
+    <Folder Include="gui\styles\themes\" />
     <Folder Include="gui\styles\var\" />
     <Folder Include="gui\views\" />
     <Folder Include="src\formatter\" />
