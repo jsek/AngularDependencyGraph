@@ -6,8 +6,10 @@ jade = require 'jade'
     # Collapse by default
 
 class Search extends Controller
-    constructor: ($scope) ->
+    constructor: ($scope, $element) ->
         
+        Placeholdem($element.find('[placeholder]'))
+
         @container = $('.quick-search')
 
         $scope.expand = ->
