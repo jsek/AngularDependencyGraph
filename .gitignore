@@ -46,7 +46,14 @@ gui/*.zip
 # Commenting this out is preferred by some people, see
 # https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
 node_modules
-gui/vendor
+gui/vendor/*
+!gui/vendor/bootstrap
+gui/vendor/bootstrap/*
+!gui/vendor/bootstrap/dist
+gui/vendor/bootstrap/dist/*
+!gui/vendor/bootstrap/dist/css
+gui/vendor/bootstrap/dist/css/*
+!gui/vendor/bootstrap/dist/css/*theme-*
 
 
 # Users Environment Variables
