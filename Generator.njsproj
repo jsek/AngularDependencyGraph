@@ -55,6 +55,7 @@
     <Content Include="gui\styles\base\_all.scss" />
     <Content Include="gui\styles\base\_fonts.scss" />
     <Content Include="gui\styles\base\_layout.scss" />
+    <Content Include="gui\styles\components\_dotFilePreview.scss" />
     <Content Include="gui\styles\components\_all.scss" />
     <Content Include="gui\styles\components\_search.scss" />
     <Content Include="gui\styles\components\_sidebar.scss" />
