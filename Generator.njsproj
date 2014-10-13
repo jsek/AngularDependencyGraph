@@ -60,9 +60,6 @@
     <Content Include="gui\styles\components\_sidebar.scss" />
     <Content Include="gui\styles\components\_sweetalert-fix.scss" />
     <Content Include="gui\styles\styles.scss" />
-    <Content Include="gui\styles\themes\bootstrap-theme-cosmo.min.css" />
-    <Content Include="gui\styles\themes\bootstrap-theme-slate.min.css" />
-    <Content Include="gui\styles\themes\bootstrap-theme-superhero.min.css" />
     <Content Include="gui\styles\var\_all.scss" />
     <Content Include="gui\styles\var\_colors.scss" />
     <Content Include="gui\layout\_scripts.jade" />
@@ -116,7 +113,6 @@
     <Folder Include="gui\styles\" />
     <Folder Include="gui\styles\base\" />
     <Folder Include="gui\styles\components\" />
-    <Folder Include="gui\styles\themes\" />
     <Folder Include="gui\styles\var\" />
     <Folder Include="gui\views\" />
     <Folder Include="src\formatter\" />

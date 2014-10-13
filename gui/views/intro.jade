@@ -15,4 +15,4 @@ hr
             li.nav-header Recent
 
             li(ng-repeat='project in projects')
-                a(href='project.path') {{ project.name }}
+                a(ng-click='open(project.id)') {{ project.name }}
