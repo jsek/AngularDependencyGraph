@@ -18,3 +18,4 @@
             mainViewService.set 'projectContent.jade', $scope
             projectNavigationService.set project
             
+        console.log '>> [Sidebar] loaded'

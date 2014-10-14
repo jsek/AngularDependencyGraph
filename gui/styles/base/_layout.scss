@@ -1,8 +1,18 @@
 ﻿
+
+.container-fluid {
+    padding: 5px;
+}
 // Main content
 
 .main {
     padding: 20px;
+
+    transition: margin-left linear .2s;
+    &.expanded {
+        width: 100%;
+        margin-left: 0;
+    }
 }
 
 @media (min-width: 768px) {
@@ -14,4 +24,8 @@
 
 .page-header {
     margin-top: 0;
+}
+
+.hidden {
+    display: none;
 }

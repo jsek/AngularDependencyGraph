@@ -15,6 +15,7 @@ class MainView extends Service
     constructor: ($compile) ->
         _compilator = $compile
         @container = $('.main')
+        @sidebar = $('.sidebar')
         _shadowDOM.insertBefore(@container).hide()
                 
     set: (filename, $scope, ignoreHistory = false) ->
@@ -50,6 +51,13 @@ class MainView extends Service
         _history.pop()
         @set _history.last(), null, true
 
+    expand: ->
+        @sidebar.addClass 'slide-out'
+        @container.addClass 'expanded'
+    
+    collapse: ->
+        @sidebar.removeClass 'slide-out'
+        @container.removeClass 'expanded'
 
     trigger: (event, data) ->
         listener(data) for listener in _listeners[event]

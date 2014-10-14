@@ -1,23 +1,33 @@
-﻿class NewProject extends Controller
+﻿fs = require 'node-fs'
+
+class NewProject extends Controller
 
     constructor: (mainViewService, $scope, $element, projectListService, fileDialog) ->
         
         projectPath = $element.find('.projectPath')
         onDirectoryChanged = (directory) -> projectPath.val(directory)
 
-        # TODO: load last used directory        
+        # TODO: load last used directory
 
         $scope.createProject = (isValid) ->
-            mainViewService.set 'intro.jade'
-            newProject = 
-                name: $scope.project.name 
-                path: $scope.project.path
+
+            dir = $scope.project.path
+            dir = dir + (if dir[dir.length - 1] isnt '\\' then '\\' else '')
+
+            newProject = new Project($scope.project.name, dir)
+
+            if fs.existsSync(newProject.modelPath) or fs.existsSync(newProject.configPath)
+                sweetAlert
+                    title: 'Cannot create project'
+                    text: 'Some files would be overwritten, use [Import] to open existing project'
+                return
             
-            # TODO: Prompt if user tries any project files will be overwritten
+            mainViewService.set 'intro.jade'
+
             projectListService.add newProject
             $scope.project.name = ''
 
-        $scope.goBack = -> 
+        $scope.goBack = ->
             mainViewService.back()
         
         $scope.openDialog = ->

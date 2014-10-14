@@ -33,9 +33,8 @@
             options:
                 showEmptyItems: false
                 verbose: true
-                colors: 
-                    externalDependencies: "red"
-                ignore: ["$*", "ng*"]
+                colors: { externalDependencies: 'red' }
+                ignore: ['$*', 'ng*']
                 #rootModule: "Module3"
                 #levelLimit: { above: 2, below: 3 }
 

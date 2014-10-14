@@ -4,8 +4,10 @@
         
         # TODO: Load recent projects
         @projects = [
-            { id: 1, name: 'Temp', path: 'C:\\Temp' }
-            { id: 2, name: 'Example - Complex', path: 'D:\\Documents\\GitHub\\AngularDependencyGraph\\examples\\' }
+            new Project('Temp', 'C:\\Temp')
+            new Project('Example - Complex', 'D:\\Documents\\GitHub\\AngularDependencyGraph\\examples\\', {
+                files: '[complex/**/*.js]'
+            })
         ]
 
     getProjects: -> @projects.slice()

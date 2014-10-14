@@ -16,9 +16,13 @@ artefacts = [
     'gui/vendor/**'
     'gui/views/**'
     'package.json'
-    'src/utils/**'
+    'src/**'
+    'tasks/**'
     'node_modules/jade/**'
     'node_modules/node-fs/**'
+    'node_modules/grunt/**'
+    'node_modules/grunt-cli/**'
+    'node_modules/.bin/grunt.cmd'
 ]
 
 

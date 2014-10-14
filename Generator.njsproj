@@ -35,9 +35,10 @@
     <Content Include="gui\app\app.coffee" />
     <Content Include="gui\app\projects\NewProjectController.coffee" />
     <Content Include="gui\app\projects\ProjectListService.coffee" />
+    <Content Include="gui\app\projects\ProjectModel.coffee" />
     <Content Include="gui\app\projects\ProjectRepositoryService.coffee" />
     <Content Include="gui\app\projects\RecentProjectsController.coffee" />
-    <Content Include="gui\app\projects\ProjectController.coffee" />
+    <Content Include="gui\app\projects\ProjectViewController.coffee" />
     <Content Include="gui\app\sidebar\SidebarController.coffee" />
     <Content Include="gui\app\projects\ProjectNavigationService.coffee" />
     <Content Include="gui\app\utils\MainViewService.coffee" />
@@ -57,6 +58,7 @@
     <Content Include="gui\styles\base\_layout.scss" />
     <Content Include="gui\styles\components\_dotFilePreview.scss" />
     <Content Include="gui\styles\components\_all.scss" />
+    <Content Include="gui\styles\components\_projectControls.scss" />
     <Content Include="gui\styles\components\_search.scss" />
     <Content Include="gui\styles\components\_sidebar.scss" />
     <Content Include="gui\styles\components\_sweetalert-fix.scss" />

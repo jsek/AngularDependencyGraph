@@ -12,3 +12,4 @@
             mainViewService.set 'projectContent.jade', $scope
             projectNavigationService.set project
             
+        console.log '>> [Recent Projects] loaded'

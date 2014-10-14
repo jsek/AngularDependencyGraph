@@ -21,7 +21,7 @@
 
   NwBuilder = require('node-webkit-builder');
 
-  artefacts = ['gui/dist/**', 'gui/resources/**', 'gui/vendor/**', 'gui/views/**', 'package.json', 'src/utils/**', 'node_modules/jade/**', 'node_modules/node-fs/**'];
+  artefacts = ['gui/dist/**', 'gui/resources/**', 'gui/vendor/**', 'gui/views/**', 'package.json', 'src/**', 'tasks/**', 'node_modules/jade/**', 'node_modules/node-fs/**', 'node_modules/grunt/**', 'node_modules/grunt-cli/**', 'node_modules/.bin/grunt.cmd'];
 
   compileCoffee = function(action) {
     action || (action = gulp.src);
