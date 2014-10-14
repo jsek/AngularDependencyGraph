@@ -14,8 +14,9 @@
 
 First things first
     
-    	npm install
-    	npm install -g grunt grunt-cli gulp bower
+	npm install -g grunt grunt-cli gulp bower
+	npm install
+	grunt build
 
 Preview (compile + build + run)
 
