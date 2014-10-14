@@ -13,7 +13,9 @@
 ### Workflow
 
 First things first
-    npm install
+    
+    	npm install
+    	npm install -g grunt grunt-cli gulp bower
 
 Preview (compile + build + run)
 
