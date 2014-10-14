@@ -23,7 +23,7 @@ Preview (compile + build + run)
 
 	gulp watch
     
-...and simply run `gulp` to build and run
+...and simply run `gulp debug` to build and run
 
 (I wish I could just create an archive and run nw.exe, but this didn't work)
 
