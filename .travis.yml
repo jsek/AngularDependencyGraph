@@ -10,3 +10,5 @@ before_script:
   - npm install -g grunt-cli coffee
   - npm install
   - npm test
+notifications:
+  email: false
