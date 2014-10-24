@@ -20,9 +20,9 @@
           showEmptyItems: false,
           verbose: true,
           colors: {
-            externalDependencies: "red"
+            externalDependencies: 'red'
           },
-          ignore: ["$*", "ng*"]
+          ignore: ['$*', 'ng*']
         },
         compile: {
           files: {

@@ -4,9 +4,9 @@
         
         # TODO: Load recent projects
         @projects = [
-            new Project('Temp', 'C:\\Temp')
-            new Project('Example - Complex', 'D:\\Documents\\GitHub\\AngularDependencyGraph\\examples\\', {
-                files: '[complex/**/*.js]'
+            new Project('Temp')
+            new Project('Example - Complex', {
+                files: '[D:\\Documents\\GitHub\\AngularDependencyGraph\\examples\\complex\\**\\*.js]'
             })
         ]
 

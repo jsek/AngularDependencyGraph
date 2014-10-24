@@ -1,5 +1,4 @@
-﻿fs = require 'node-fs'
-jade = require 'jade'
+﻿jade = require 'jade'
 
 class MainView extends Service
 
@@ -11,16 +10,21 @@ class MainView extends Service
     _compilator = {}
 
     _listeners = {}
+
+    viewsRootDirectory = 'gui/views/'
     
-    constructor: ($compile) ->
+    constructor: ($compile, $rootScope) ->
         _compilator = $compile
         @container = $('.main')
         @sidebar = $('.sidebar')
         _shadowDOM.insertBefore(@container).hide()
+        @defaultScope = $rootScope
                 
     set: (filename, $scope, ignoreHistory = false) ->
 
         _history.push(filename) unless ignoreHistory
+
+        @currentTemplate = filename
 
         @trigger 'change', filename
 
@@ -29,8 +33,8 @@ class MainView extends Service
             _shadowDOM.children("[data-template='#{filename}']").detach().appendTo @container
             _wasAlreadySet = true
         else
-            template = jade.compile fs.readFileSync("gui/views/#{filename}")
-            compiledHTML = _compilator(template())($scope)
+            template = jade.compileFile(viewsRootDirectory + filename)
+            compiledHTML = _compilator(template())($scope or @defaultScope)
             
             newContent = $("<div data-template='#{filename}'></div>")
             newContent.html compiledHTML
@@ -41,7 +45,6 @@ class MainView extends Service
             _templates[filename] = newContent
             _wasAlreadySet = false
 
-        
     find: (selector) ->
         @container.find selector
 

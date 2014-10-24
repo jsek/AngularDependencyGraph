@@ -1,0 +1,30 @@
+﻿.row(ng-controller='projectOptionsController', ng-show='!visible')
+    form.col-xs-12(name='optionsForm')
+
+        .form-group(ng-class='{ "has-error" : optionsForm.files.$invalid && !optionsForm.files.$pristine }')
+            label.control-label Files
+            .row
+                .col-xs-10
+                    textarea.form-control.multiline-input.js-projectFiles(name='files', ng-model='options.files', required="required", placeholder='Source files', autofocus='autofocus')
+                .col-xs-2
+                    button.btn.btn-default.openDialog(type='button', ng-click='openDialog()')
+                        i.glyphicon.glyphicon-plus
+                        // folder-open
+                        
+        .checkbox
+            label
+                input(type='checkbox', name='showEmptyItems', ng-model='options.showEmptyItems') 
+                | Show empty blocks
+                
+        .checkbox
+            label 
+                input(type='checkbox', name='verbose', ng-model='options.verbose') 
+                | Verbose mode
+
+        .form-group
+            label.control-label Ignore
+            textarea.form-control.multiline-input(name='ignore', ng-model='options.ignore', required="required", placeholder='Source files', autofocus='autofocus')
+
+        input.btn.btn-success(type='button', ng-click='saveOptions()', value='Save')
+        | &nbsp;
+        .btn.btn-default(ng-click='hide()') Cancel

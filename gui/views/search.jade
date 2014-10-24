@@ -1,0 +1,9 @@
+﻿form.quick-search(ng-controller='searchController', ng-class='{"expanded" : expanded }')
+    button.btn.btn-default.btn-sm(ng-click='expand()', ng-show='!expanded')
+        i.glyphicon.glyphicon-search
+     
+    .input-group(ng-show='expanded')
+        span.input-group-addon
+            button.btn.btn-default.btn-sm(ng-click='collapse()')
+                i.glyphicon.glyphicon-search
+        input.form-control.input-sm(type='text', placeholder='Search...')

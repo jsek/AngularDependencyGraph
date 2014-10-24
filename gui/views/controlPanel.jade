@@ -1,0 +1,19 @@
+﻿
+.projectControls(ng-controller='projectControlPanelController')
+
+    .btn.btn-default.btn-sm(ng-click='toggleOptions()')
+        i.glyphicon.glyphicon-cog
+    | &nbsp;
+
+    .btn.btn-default.btn-sm(ng-click='refresh()')
+        i.glyphicon.glyphicon-refresh
+    | &nbsp;
+
+    .btn.btn-default.btn-sm(ng-click='toggleNotes()')
+        i.glyphicon.glyphicon-comment
+    | &nbsp;
+
+    .btn.btn-default.btn-sm(ng-click='expand()', ng-show='!expanded')
+        i.glyphicon.glyphicon-resize-full
+    .btn.btn-default.btn-sm(ng-click='collapse()', ng-show='expanded')
+        i.glyphicon.glyphicon-resize-small

@@ -1,0 +1,19 @@
+﻿
+h3.page-header New Project
+
+.row(ng-controller='newProjectController')
+
+    form.col-xs-12(name='newProjectForm')
+
+        .form-group(ng-class='{ "has-error" : newProjectForm.name.$invalid && !newProjectForm.name.$pristine }')
+            .input-group
+                span.input-group-addon
+                    i.glyphicon.glyphicon-file
+                input.form-control(type='text', name='name', ng-model='newName', required="required", placeholder='Project name', autofocus='autofocus')
+            
+            small.help-block(ng-show='newProjectForm.name.$invalid && !newProjectForm.name.$pristine') Required
+        
+        input.btn.btn-success(type='button', ng-click='createProject(newProjectForm.$valid)', value='Create')
+        | &nbsp;
+        .btn.btn-default(ng-click='goBack()') Cancel
+
