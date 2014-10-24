@@ -1,5 +1,5 @@
 (function() {
-  var NwBuilder, artefacts, coffee, compileCoffee, compileJade, compileSass, gulp, gutil, jade, ngAnnotate, ngClassify, sass, shell, uglify;
+  var NwBuilder, artefacts, coffee, compileCoffee, compileJade, compileSass, copy, gulp, gutil, jade, ngAnnotate, ngClassify, sass, shell, uglify;
 
   gulp = require('gulp');
 
@@ -18,6 +18,8 @@
   sass = require('gulp-ruby-sass');
 
   jade = require('gulp-jade');
+
+  copy = require('gulp-copy');
 
   NwBuilder = require('node-webkit-builder');
 
@@ -80,6 +82,15 @@
     })).pipe(gulp.dest('gui/dist/js'));
   });
 
+  gulp.task('copyCssAndFonts', function() {
+    gulp.src('gui/styles/themes/**/*.css').pipe(copy('gui/dist/css', {
+      prefix: 3
+    }));
+    return gulp.src('gui/styles/fonts/**').pipe(copy('gui/dist', {
+      prefix: 2
+    }));
+  });
+
   gulp.task('buildExecutable', function() {
     var nw;
     nw = new NwBuilder({
@@ -101,9 +112,9 @@
 
   gulp.task('run', shell.task(['cmd /C "start .\\bin\\AngularDependencyGraph\\win\\AngularDependencyGraph.exe"']));
 
-  gulp.task('compileDebug', ['sass', 'coffee', 'jade']);
+  gulp.task('compileDebug', ['sass', 'coffee', 'jade', 'copyCssAndFonts']);
 
-  gulp.task('compileRelease', ['sassRelease', 'coffeeRelease', 'jade']);
+  gulp.task('compileRelease', ['sassRelease', 'coffeeRelease', 'jade', 'copyCssAndFonts']);
 
   gulp.task('build', ['compileRelease', 'buildExecutable']);
 

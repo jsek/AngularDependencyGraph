@@ -7,6 +7,7 @@ uglify      = require 'gulp-uglify'
 ngClassify  = require 'gulp-ng-classify'
 sass        = require 'gulp-ruby-sass'
 jade        = require 'gulp-jade'
+copy        = require 'gulp-copy'
 NwBuilder   = require 'node-webkit-builder'
 
 
@@ -85,6 +86,12 @@ gulp.task 'coffeeRelease', ->
         .pipe uglify { mangle: true }
         .pipe gulp.dest 'gui/dist/js'
 
+gulp.task 'copyCssAndFonts', ->
+    gulp.src 'gui/styles/themes/**/*.css' 
+        .pipe copy 'gui/dist/css', prefix:3
+    gulp.src 'gui/styles/fonts/**' 
+        .pipe copy 'gui/dist', prefix:2
+
 gulp.task 'buildExecutable', ->
     nw = new NwBuilder
         version: '0.10.5'
@@ -111,9 +118,9 @@ gulp.task 'run', shell.task [
 #// Main pipes
 #//
 
-gulp.task 'compileDebug', ['sass', 'coffee', 'jade']
+gulp.task 'compileDebug', ['sass', 'coffee', 'jade', 'copyCssAndFonts']
 
-gulp.task 'compileRelease', ['sassRelease', 'coffeeRelease', 'jade']
+gulp.task 'compileRelease', ['sassRelease', 'coffeeRelease', 'jade', 'copyCssAndFonts']
 
 gulp.task 'build', ['compileRelease', 'buildExecutable']
 
