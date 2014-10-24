@@ -1,7 +1,5 @@
 ﻿class ProjectControlPanel extends Controller
     
-    optionsTemplate = 'project/options.jade'
-
     constructor: ($scope, $rootScope, mainViewService) ->
         $scope.project = {}
         $scope.model = { visible: false }
@@ -9,10 +7,7 @@
         $scope.notes = { visible: false }
 
         $scope.toggleOptions = ->
-            if mainViewService.currentTemplate is optionsTemplate
-                mainViewService.set optionsTemplate
-            else
-                mainViewService.goBack()
+            $rootScope.optionsVisible = not $rootScope.optionsVisible
 
         $scope.toggleNotes = ->
             $rootScope.notesVisible = not $rootScope.notesVisible

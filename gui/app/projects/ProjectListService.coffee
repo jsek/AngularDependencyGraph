@@ -1,12 +1,10 @@
 ﻿class ProjectList extends Service
     _projects = []
     _listeners = {}
-    _lastProjectId = 2
     
     constructor: () ->
         
     add: (project) ->
-        project.id = ++_lastProjectId
         _projects.push project
         @trigger 'add', project
 

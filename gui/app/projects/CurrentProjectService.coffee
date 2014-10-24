@@ -4,10 +4,12 @@
 
     _listeners = {}
 
-    constructor: () ->
-        
+    constructor: ($rootScope) ->
+        @root = $rootScope
+
     set: (project) ->
         _current = project
+        @root.currentProject = project
         @trigger 'reset', _current
         
     refresh: ->

@@ -15,6 +15,7 @@ class NewProject extends Controller
                 return
             
             mainViewService.set 'pages/intro.jade'
+            # TODO: Navigate directly to the new project options
 
             projectListService.add newProject
             $scope.project.name = ''
