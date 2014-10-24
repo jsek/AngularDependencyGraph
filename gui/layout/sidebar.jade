@@ -1,7 +1,7 @@
 ﻿.row
     .col-sm-3.col-md-2.sidebar
         ul.nav.nav-sidebar(ng-controller='sidebarController')
-            li(ng-class='{"active": currentView == "intro.jade"}')
+            li(ng-class='{"active": currentView == "pages/intro.jade"}')
                 a(href='javascript:void(0)', ng-click='goHome()') 
                     i.glyphicon.glyphicon-home
                     | &nbsp; Home
@@ -10,5 +10,5 @@
 
             li.nav-header Projects
             
-            li(ng-repeat='project in projects', ng-class='{"active": currentView == "projectContent.jade" && currentProject.id == project.id}')
+            li(ng-repeat='project in projects', ng-class='{"active": currentView == "pages/project.jade" && currentProject.id == project.id}')
                 a(ng-click='open(project.id)') {{ project.name }}

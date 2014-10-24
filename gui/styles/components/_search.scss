@@ -4,9 +4,8 @@
     position: absolute;
     right: 5px;
     top: 5px;
-    width: 200px;
 
-    .form-control {
-        height: 25px;
+    &.expanded {
+        width: 200px;
     }
 }
