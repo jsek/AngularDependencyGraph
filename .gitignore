@@ -5,6 +5,9 @@ logs
 # Visual Studio
 *.suo
 
+# Webstorm
+.idea
+
 #JavaScript
 config/**/*.js
 src/**/*.js
@@ -47,13 +50,7 @@ gui/*.zip
 # https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
 node_modules
 gui/vendor/*
-!gui/vendor/bootstrap
-gui/vendor/bootstrap/*
-!gui/vendor/bootstrap/dist
-gui/vendor/bootstrap/dist/*
-!gui/vendor/bootstrap/dist/css
-gui/vendor/bootstrap/dist/css/*
-!gui/vendor/bootstrap/dist/css/*theme-*
+!gui/vendor/sweetalert
 
 
 # Users Environment Variables
