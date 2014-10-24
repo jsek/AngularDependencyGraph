@@ -5,7 +5,7 @@ grunt = '.\\node_modules\\.bin\\grunt.cmd'
 
 class ProjectOptions extends Controller
     
-    constructor: ($scope, $element, mainViewService, currentProjectService, fileDialog) ->
+    constructor: ($scope, $rootScope, $element, mainViewService, currentProjectService, fileDialog) ->
 
         _projectFiles = $element.find('.js-projectFiles')
 
@@ -17,7 +17,7 @@ class ProjectOptions extends Controller
             console.log ">> [Project View](#{project.id}) loaded"
 
         onDirectorySelected = (directory) ->
-            comma = _projectFiles.val().length is 0 ? ',\n' : ''
+            comma = if _projectFiles.val().length isnt 0 then ',\n' else ''
             _projectFiles.val _projectFiles.val() + comma + "#{directory}\\**\\*.js"
             $scope.$apply()
 
@@ -25,8 +25,10 @@ class ProjectOptions extends Controller
             fileDialog.openDir onDirectorySelected
 
         $scope.save = ->
-            $scope.visible = false
+            $rootScope.optionsVisible = false
+            
+            currentProjectService.save()
             # TODO
 
         $scope.hide = ->
-            $scope.visible = false
+            $rootScope.optionsVisible = false

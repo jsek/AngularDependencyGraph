@@ -1,9 +1,10 @@
 ﻿
-
-_homeDir = process.env[(process.platform is 'win32') ? 'USERPROFILE' : 'HOME']
-_projects = "#{_homeDir}\\AngularDependencyGraph\\Projects\\"
-
 class Project
+
+    _homeDir = process.env['USERPROFILE']
+
+    _projects = "#{_homeDir}\\AngularDependencyGraph\\Projects\\"
+
 
     __id = 1
     _modelFilename = 'model.dot'
@@ -15,6 +16,7 @@ class Project
         @options = new Options(options)
         @modelPath = @path + _modelFilename
         @configPath = @path + _configFilename
+
 
 class Options
     
@@ -30,8 +32,7 @@ class Options
             above: undefined
             below: undefined
 
-    constructor: (options) ->
+    constructor: (options = {}) ->
         
-        for key, value in _defaults
+        for key, value of _defaults
             @[key] = options[key] || _defaults[key]
-    

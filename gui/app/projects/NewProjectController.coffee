@@ -18,7 +18,7 @@ class NewProject extends Controller
             # TODO: Navigate directly to the new project options
 
             projectListService.add newProject
-            $scope.project.name = ''
+            $scope.newName = ''
 
         $scope.goBack = ->
             mainViewService.back()

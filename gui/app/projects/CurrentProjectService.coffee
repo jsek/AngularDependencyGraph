@@ -4,8 +4,11 @@
 
     _listeners = {}
 
-    constructor: ($rootScope) ->
+    constructor: ($rootScope, $q, modelLoaderService) ->
         @root = $rootScope
+        @deferred = -> $q.defer()
+        @loadModel = -> 
+            modelLoaderService.load(_current.options, _current.path)
 
     set: (project) ->
         _current = project
@@ -14,6 +17,19 @@
         
     refresh: ->
         @trigger 'refresh', _current
+        
+    save: ->
+        d = @deferred()
+        
+        @loadModel()
+            .then (model) -> d.resolve(model)
+            .catch (err) -> d.reject(err)
+    
+        _current.whenModelReady = d.promise 
+
+        @trigger 'reset', _current
+
+    # ---
 
     trigger: (event, data) ->
         listener(data) for listener in _listeners[event]

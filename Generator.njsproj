@@ -34,6 +34,7 @@
     <Content Include="bower.json" />
     <Content Include="gui\app\app.coffee" />
     <Content Include="gui\app\graphs\GraphPreviewController.coffee" />
+    <Content Include="gui\app\graphs\ModelLoaderService.coffee" />
     <Content Include="gui\app\projects\NewProjectController.coffee" />
     <Content Include="gui\app\projects\CurrentProjectService.coffee" />
     <Content Include="gui\app\projects\ProjectListService.coffee" />
