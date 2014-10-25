@@ -14,17 +14,23 @@
 
 First things first
     
-	npm install -g grunt grunt-cli gulp bower
-	npm install
-	grunt build
+    npm install -g grunt grunt-cli gulp bower
+    npm install && bower install
+    grunt build
+
+The fist run of *node-webkit-builder* task will download node-webkit into *cache* directory and it usually costs more than 10 minutes. 
+That's why I recommend doing this manually:
+
+    .\nw-cache\extract.bat
 
 Preview (compile + build + run)
 
-	gulp
+    grunt build && gulp
+
 
 #### Development workflow: frontend
 
-	gulp watch
+    gulp watch
     
 ...and simply run `gulp debug` to build and run *(this is not real debugging, sorry)*
 
@@ -32,11 +38,11 @@ Preview (compile + build + run)
 
 #### Development workflow: backend
 
-	grunt watch
+    grunt watch
     
 ...and simply run `grunt` to run
 
-Use `run.js` to debug backend or run GUI with just `F5` (in Visual Studio) 
+Use `run.js` to debug backend or run GUI with just `Ctrl + F5` (in Visual Studio) 
 
 ---
 
