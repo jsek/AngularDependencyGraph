@@ -2,7 +2,7 @@
 
 class NewProject extends Controller
 
-    constructor: (mainViewService, $scope, $element, projectListService) ->
+    constructor: (mainViewService, $scope, $element, projectRepositoryService) ->
         
         $scope.createProject = (isValid) ->
 
@@ -17,7 +17,7 @@ class NewProject extends Controller
             mainViewService.set 'pages/intro.jade'
             # TODO: Navigate directly to the new project options
 
-            projectListService.add newProject
+            projectRepositoryService.add newProject
             $scope.newName = ''
 
         $scope.goBack = ->

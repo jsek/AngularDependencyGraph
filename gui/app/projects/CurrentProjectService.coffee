@@ -8,7 +8,7 @@
         @root = $rootScope
         @deferred = -> $q.defer()
         @loadModel = -> 
-            modelLoaderService.load(_current.options, _current.path)
+            modelLoaderService.load(_current.options, _current.modelPath)
 
     set: (project) ->
         _current = project
@@ -26,7 +26,9 @@
             .catch (err) -> d.reject(err)
     
         _current.whenModelReady = d.promise 
-
+        
+        _current.save()
+        
         @trigger 'reset', _current
 
     # ---

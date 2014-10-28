@@ -9,6 +9,8 @@ logs
 .idea
 
 #JavaScript
+gui/app/**/*.js
+gui/app/**/*.map
 config/**/*.js
 src/**/*.js
 tasks/**/*.js

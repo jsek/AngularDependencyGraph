@@ -37,7 +37,6 @@
     <Content Include="gui\app\graphs\ModelLoaderService.coffee" />
     <Content Include="gui\app\projects\NewProjectController.coffee" />
     <Content Include="gui\app\projects\CurrentProjectService.coffee" />
-    <Content Include="gui\app\projects\ProjectListService.coffee" />
     <Content Include="gui\app\projects\ProjectModel.coffee" />
     <Content Include="gui\app\projects\ProjectRepositoryService.coffee" />
     <Content Include="gui\app\controlPanel\ControlPanelController.coffee" />

@@ -1,11 +1,6 @@
-﻿fs = require 'node-fs'
-jade = require 'jade'
-exec = require('child_process').exec
-grunt = '.\\node_modules\\.bin\\grunt.cmd'
-
-class ProjectOptions extends Controller
+﻿class ProjectOptions extends Controller
     
-    constructor: ($scope, $rootScope, $element, mainViewService, currentProjectService, fileDialog) ->
+    constructor: ($scope, $rootScope, $element, currentProjectService, fileDialog) ->
 
         _projectFiles = $element.find('.js-projectFiles')
 
@@ -17,8 +12,7 @@ class ProjectOptions extends Controller
             console.log ">> [Project View](#{project.id}) loaded"
 
         onDirectorySelected = (directory) ->
-            comma = if _projectFiles.val().length isnt 0 then ',\n' else ''
-            _projectFiles.val _projectFiles.val() + comma + "#{directory}\\**\\*.js"
+            $scope.options.files = "#{directory}\\**\\*.js"
             $scope.$apply()
 
         $scope.openDialog = ->
