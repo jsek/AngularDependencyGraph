@@ -25,7 +25,7 @@ That's why I recommend doing this manually:
 
 Preview (compile + build + run)
 
-    grunt build && gulp
+    gulp
 
 
 #### Development workflow: frontend
