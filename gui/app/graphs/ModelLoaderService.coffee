@@ -29,7 +29,7 @@ class ModelLoader extends Service
                 generate: {
                     options: #{JSON.stringify(_options)},
                     compile: {
-                        files: { '#{filePath}': ['#{_files}'] }
+                        files: { '#{filePath.pathInCode()}': ['#{_files.pathInCode()}'] }
                     }
                 }
             });
