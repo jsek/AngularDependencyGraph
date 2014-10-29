@@ -22,33 +22,33 @@ class ModelLoader extends Service
 
         _files = options.files ## or should it be string ?
         
-        #try
-        gruntfile = """
-        module.exports = function(grunt) {
-            grunt.initConfig({
-                generate: {
-                    options: #{JSON.stringify(_options)},
-                    compile: {
-                        files: { '#{filePath.pathInCode()}': ['#{_files.pathInCode()}'] }
+        try
+            gruntfile = """
+            module.exports = function(grunt) {
+                grunt.initConfig({
+                    generate: {
+                        options: #{JSON.stringify(_options)},
+                        compile: {
+                            files: { '#{filePath.pathInCode()}': ['#{_files.pathInCode()}'] }
+                        }
                     }
-                }
-            });
+                });
 
-            grunt.loadTasks('tasks');
-            grunt.registerTask('default', ['generate']);
-        };
+                grunt.loadTasks('tasks');
+                grunt.registerTask('default', ['generate']);
+            };
 
-        """
+            """
 
-        fs.writeFile 'gruntfile.js', gruntfile, (err) ->
-            console.log gruntfile
-            ifNot err, ->
-                exec 'node_modules\\.bin\\grunt.cmd', (err) ->
-                    ifNot err, ->
-                        d.resolve()
-                        console.log 'New model loaded successfully'
+            fs.writeFile 'gruntfile.js', gruntfile, (err) ->
+                console.log gruntfile
+                ifNot err, ->
+                    exec 'node_modules\\.bin\\grunt.cmd', (err) ->
+                        ifNot err, ->
+                            d.resolve()
+                            console.log 'New model loaded successfully'
             
-        #catch err
-        #    d.reject err
+        catch err
+            d.reject err
 
         return d.promise
