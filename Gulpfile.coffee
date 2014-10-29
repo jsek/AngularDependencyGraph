@@ -23,6 +23,9 @@ artefacts = [
     'node_modules/node-fs/**'
     'node_modules/grunt/**'
     'node_modules/grunt-cli/**'
+    'node_modules/d3/**'
+    'node_modules/dagre/**'
+    'node_modules/dagre-d3/**'
     'node_modules/.bin/grunt.cmd'
 ]
 

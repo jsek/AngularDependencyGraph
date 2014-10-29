@@ -15,6 +15,7 @@
 First things first
     
     npm install -g grunt grunt-cli gulp bower
+    npm i d3 dagre dagre-d3 --msvs_version=2013
     npm install && bower install
     grunt build
 

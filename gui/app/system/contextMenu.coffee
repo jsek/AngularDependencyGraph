@@ -9,3 +9,7 @@ $ ->
         e.preventDefault()
         menu.popup e.x, e.y
         return false
+
+    document.addEventListener 'keyup', (e) -> 
+        if (e.keyIdentifier is 'F12') or (e.keyCode is 74 and e.shiftKey and e.ctrlKey)
+            win.showDevTools()

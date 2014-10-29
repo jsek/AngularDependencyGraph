@@ -8,6 +8,9 @@ logs
 # Webstorm
 .idea
 
+# Node-Gyp
+config.gypi
+
 #JavaScript
 gui/app/**/*.js
 gui/app/**/*.map
