@@ -26,6 +26,8 @@ artefacts = [
     'node_modules/d3/**'
     'node_modules/dagre/**'
     'node_modules/dagre-d3/**'
+    'node_modules/graphlib/**'
+    'node_modules/lodash/**'
     'node_modules/.bin/grunt.cmd'
 ]
 
