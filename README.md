@@ -14,9 +14,9 @@
 
 First things first
     
-    npm install -g grunt grunt-cli gulp bower
+    npm i -g grunt grunt-cli gulp bower
     npm i d3 dagre dagre-d3 --msvs_version=2013
-    npm install && bower install
+    npm i && bower i
     grunt build
 
 The fist run of *node-webkit-builder* task will download node-webkit into *cache* directory and it usually costs more than 10 minutes. 
