@@ -15,7 +15,6 @@
 First things first
     
     npm i -g grunt grunt-cli gulp bower
-    npm i d3 dagre dagre-d3 --msvs_version=2013
     npm i && bower i
     grunt build
 

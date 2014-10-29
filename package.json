@@ -28,14 +28,9 @@
   },
   "license": "MIT",
   "dependencies": {
-    "d3": "^3.4.13",
-    "dagre": "^0.6.1",
-    "dagre-d3": "^0.3.2",
-    "graphlib": "^1.0.0",
     "grunt": "^0.4.5",
     "grunt-cli": "^0.1.13",
     "jade": "^1.7.0",
-    "lodash": "^2.4.1",
     "node-fs": "^0.1.7"
   },
   "devDependencies": {
