@@ -2,14 +2,19 @@
 
     _graph = undefined
 
+    _renderGraph = (model) ->
+
+        # TODO
+        _graph.text model
+
+
     constructor: ($element, currentProjectService) ->
 
         _graph = $element.find '.js-graph'                
 
-        currentProjectService.on 'reset', (project) ->
+        currentProjectService.on 'save,reset,refresh', (project) ->
             return unless project.whenModelReady
             project.whenModelReady
-                .then -> console.log 'model loaded'
+                .then (model) -> 
+                    _renderGraph model
                     
-
-        console.log '>> [Intro] loaded'

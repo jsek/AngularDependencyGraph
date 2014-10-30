@@ -3,22 +3,35 @@ exec = require('child_process').exec
 
 class ModelLoader extends Service
 
+    d = undefined # TODO: dirty
+    
+    ifNot = (err, next) ->
+        if err?
+            console.error err
+            d.reject err
+        else
+            next()
+
+
     constructor: ($q) ->
         @deferred = -> $q.defer()
+
+    reload: (filePath) ->
+        
+        d = @deferred()
+        fs.readFile filePath, (err, data) ->
+            ifNot err, ->
+                d.resolve data.toString()
+
+        return d.promise
 
     load: (options, filePath) ->
         d = @deferred()
 
-        ifNot = (err, next) ->
-            if err?
-                console.error err
-                d.reject err
-            else
-                next()
-
         _options = 
             colors: options.colors
             ignore: options.ignore
+            json:   options.json
 
         _files = options.files ## or should it be string ?
         
@@ -45,7 +58,8 @@ class ModelLoader extends Service
                 ifNot err, ->
                     exec 'node_modules\\.bin\\grunt.cmd', (err) ->
                         ifNot err, ->
-                            d.resolve()
+                            text = fs.readFileSync(filePath).toString()
+                            d.resolve text
                             console.log 'New model loaded successfully'
             
         catch err

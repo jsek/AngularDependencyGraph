@@ -51,3 +51,7 @@ module.exports = (grunt) ->
                 }
 
             log source, destination
+
+            if options.json
+                jsonFile = destination.replace(/[\\\/\.][^\\\/\.]*$/,'.json')
+                grunt.file.write jsonFile, JSON.stringify modules

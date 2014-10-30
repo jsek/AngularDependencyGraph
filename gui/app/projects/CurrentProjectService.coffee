@@ -9,6 +9,8 @@
         @deferred = -> $q.defer()
         @loadModel = -> 
             modelLoaderService.load(_current.options, _current.modelPath)
+        @reloadModel = -> 
+            modelLoaderService.reload(_current.modelPath)
 
     set: (project) ->
         _current = project
@@ -16,26 +18,30 @@
         @trigger 'reset', _current
         
     refresh: ->
+        _current.whenModelReady = @getModelPromiseFor @reloadModel
         @trigger 'refresh', _current
         
     save: ->
+        _current.whenModelReady = @getModelPromiseFor @loadModel
+        @trigger 'save', _current
+        _current.save()
+
+    # ---
+
+    getModelPromiseFor: (method) ->
         d = @deferred()
         
-        @loadModel()
+        method()
             .then (model) -> d.resolve(model)
             .catch (err) -> d.reject(err)
     
-        _current.whenModelReady = d.promise 
-        
-        _current.save()
-        
-        @trigger 'reset', _current
+        return d.promise 
 
-    # ---
 
     trigger: (event, data) ->
         listener(data) for listener in _listeners[event]
 
-    'on': (event, fn) ->
-        _listeners[event] or= []
-        _listeners[event].push fn 
+    'on': (events, fn) ->
+        for event in events.split(',')
+            _listeners[event] or= []
+            _listeners[event].push fn 

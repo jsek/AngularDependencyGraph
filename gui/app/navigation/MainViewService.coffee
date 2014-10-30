@@ -65,6 +65,7 @@ class MainView extends Service
     trigger: (event, data) ->
         listener(data) for listener in _listeners[event]
 
-    'on': (event, fn) ->
-        _listeners[event] or= []
-        _listeners[event].push fn 
+    'on': (events, fn) ->
+        for event in events.split(',')
+            _listeners[event] or= []
+            _listeners[event].push fn 

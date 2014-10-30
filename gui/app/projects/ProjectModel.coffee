@@ -2,8 +2,8 @@
 
 class Project
     __id = 1
-    _modelFilename = 'model.dot'
-    _configFilename = 'model.config'
+    _modelFilename = 'model.json'
+    _configFilename = 'config.json'
 
     constructor: (@name, options) ->
         @id = __id++
@@ -41,6 +41,7 @@ class Options
     _defaults = 
         files: []
         showEmptyItems: false
+        json: true
         verbose: false
         colors:
             externalDependencies: 'red'

@@ -3,6 +3,10 @@
     constructor: ($scope, $rootScope, $element, currentProjectService, fileDialog) ->
 
         _projectFiles = $element.find('.js-projectFiles')
+        
+        _hide = -> $rootScope.optionsVisible = false
+
+        $scope.hide = _hide
 
         $scope.refresh = ->
             currentProjectService.refresh()
@@ -19,10 +23,5 @@
             fileDialog.openDir onDirectorySelected
 
         $scope.save = ->
-            $rootScope.optionsVisible = false
-            
             currentProjectService.save()
-            # TODO
-
-        $scope.hide = ->
-            $rootScope.optionsVisible = false
+            _hide()

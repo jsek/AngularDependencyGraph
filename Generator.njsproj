@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{adec4596-cd19-42f0-ac42-f0d8c77f896b}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>run.js</StartupFile>
+    <StartupFile>run - Frontend.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -30,6 +30,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="run - Backend.js" />
     <Compile Include="tests\parser\_script_1_fixture.coffee" />
     <Content Include="bower.json" />
     <Content Include="gui\app\app.coffee" />
@@ -45,6 +46,7 @@
     <Content Include="gui\app\navigation\SidebarController.coffee" />
     <Content Include="gui\app\navigation\MainViewService.coffee" />
     <Content Include="gui\app\controlPanel\SearchController.coffee" />
+    <Content Include="gui\app\utils\TextZooming.coffee" />
     <Content Include="gui\app\system\ContextMenu.coffee" />
     <Content Include="gui\app\system\ErrorHandler.coffee" />
     <Content Include="gui\app\system\Start.coffee" />
@@ -82,7 +84,7 @@
     <Content Include="Gulpfile.coffee" />
     <Content Include="README.md" />
     <Content Include="package.json" />
-    <Compile Include="run.js" />
+    <Compile Include="run - Frontend.js" />
     <Content Include=".travis.yml" />
     <Content Include="Gruntfile.coffee" />
     <Compile Include="Gruntfile.js" />
