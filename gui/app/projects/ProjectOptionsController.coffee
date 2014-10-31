@@ -13,6 +13,7 @@
 
         currentProjectService.on 'reset', (project) ->
             $scope.options = project.options
+            $scope.options.ignore_text = $scope.options.ignore.join(',')
             console.log ">> [Project View](#{project.id}) loaded"
 
         onDirectorySelected = (directory) ->
@@ -23,5 +24,6 @@
             fileDialog.openDir onDirectorySelected
 
         $scope.save = ->
+            $scope.options.ignore = $scope.options.ignore_text.split(',')
             currentProjectService.save()
             _hide()

@@ -9,8 +9,8 @@
         draw = (isUpdate) ->
             for module in data
                 id = module.name
-                className = ((if module.moduleDependencies.length > 0 then "running" else "stopped"))
-                className += " warn"  if module.moduleDependencies.length > 10
+                className = "running"
+                className += " warn"  if module.moduleDependencies.length > 5
                 html = """
                     <div>
                         <span class=status></span>
@@ -29,7 +29,6 @@
                 if module.moduleDependencies
                     for dependency in module.moduleDependencies
                         g.setEdge dependency, id,
-                            label: "uses"
                             width: 40
             
             externalModules = []
