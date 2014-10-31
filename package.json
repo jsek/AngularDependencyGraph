@@ -1,6 +1,6 @@
 {
   "name": "AngularDependencyGraph",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "gui/dist/index.html",
   "window": {
     "title": "Angular Dependency Graph Generator",
