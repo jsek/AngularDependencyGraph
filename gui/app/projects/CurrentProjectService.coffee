@@ -8,7 +8,7 @@
         @root = $rootScope
         @deferred = -> $q.defer()
         @loadModel = -> 
-            modelLoaderService.load(_current.options, _current.modelPath)
+            modelLoaderService.load(_current.options, _current.dotPath, _current.modelPath)
         @reloadModel = -> 
             modelLoaderService.reload(_current.modelPath)
 

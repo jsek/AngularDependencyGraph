@@ -2,6 +2,7 @@
 
 class Project
     __id = 1
+    _dotFilename = 'model.dot'
     _modelFilename = 'model.json'
     _configFilename = 'config.json'
 
@@ -9,6 +10,7 @@ class Project
         @id = __id++
         @path = global.projectsDir + @name
         @options = new Options(options)
+        @dotPath = @path + '\\' + _dotFilename
         @modelPath = @path + '\\' + _modelFilename
         @configPath = @path + '\\' + _configFilename
         

@@ -25,7 +25,7 @@ class ModelLoader extends Service
 
         return d.promise
 
-    load: (options, filePath) ->
+    load: (options, dotPath, filePath) ->
         d = @deferred()
 
         _options = 
