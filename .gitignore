@@ -55,6 +55,8 @@ gui/*.zip
 node_modules
 gui/vendor/*
 !gui/vendor/sweetalert
+!gui/vendor/d3
+!gui/vendor/dagre-d3
 
 # Users Environment Variables
 .lock-wscript
