@@ -60,6 +60,7 @@
     <Content Include="gui\styles\base\_all.scss" />
     <Content Include="gui\styles\base\_fonts.scss" />
     <Content Include="gui\styles\base\_layout.scss" />
+    <Content Include="gui\styles\components\_graph.scss" />
     <Content Include="gui\styles\components\_multilineInput.scss" />
     <Content Include="gui\styles\components\_all.scss" />
     <Content Include="gui\styles\components\_projectControls.scss" />

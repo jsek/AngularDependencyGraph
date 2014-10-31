@@ -1,0 +1,134 @@
+﻿
+  .graph {
+    width: 100%;
+    height: 100%;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serf;
+    background: #333;
+  }
+
+
+  @-webkit-keyframes flash {
+    0%, 50%, 100% {
+      opacity: 1;
+    }
+
+    25%, 75% {
+      opacity: 0.2;
+    }
+  }
+
+  @keyframes flash {
+    0%, 50%, 100% {
+      opacity: 1;
+    }
+
+    25%, 75% {
+      opacity: 0.2;
+    }
+  }
+
+  .warn {
+    -webkit-animation-duration: 5s;
+    animation-duration: 5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+  }
+
+  .graph {
+    width: 100%;
+    height: 100%;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .graph text {
+    font-weight: 300;
+    font-size: 14px;
+  }
+
+  .graph .node rect {
+    stroke-width: 1.5px;
+    stroke: #bbb;
+    fill: #666;
+  }
+
+  .graph .status {
+    height: 100%;
+    width: 15px;
+    display: block;
+    float: left;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-right: 4px;
+  }
+
+  .graph .running .status {
+    background-color: #7f7;
+  }
+
+  .graph .running.warn .status {
+    background-color: #ffed68;
+  }
+
+  .graph .stopped .status {
+    background-color: #f77;
+  }
+
+  .graph .warn .queue {
+    color: #f77;
+  }
+
+  .warn {
+    -webkit-animation-name: flash;
+    animation-name: flash;
+  }
+
+  .graph .consumers {
+    margin-right: 2px;
+  }
+
+  .graph .consumers,
+  .graph .name {
+    margin-top: 4px;
+  }
+
+  .graph .consumers:after {
+    content: "x";
+  }
+
+  .graph .queue {
+    display: block;
+    float: left;
+    width: 130px;
+    height: 20px;
+    font-size: 12px;
+    margin-top: 2px;
+  }
+
+  .graph .node g div {
+    width: 200px;
+    height: 40px;
+    color: #fff;
+  }
+
+  .graph .node g div span.consumers {
+    display: inline-block;
+    width: 20px;
+  }
+
+  .graph .edgeLabel text {
+    width: 50px;
+    fill: #fff;
+  }
+
+  .graph .edgePath path {
+    stroke: #999;
+    stroke-width: 1.5px;
+    fill: #999;
+  }
