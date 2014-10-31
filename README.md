@@ -16,6 +16,11 @@ First things first
     
     npm i -g grunt grunt-cli gulp bower
     npm i && bower i
+
+Then make sure that PATH contains Ruby bin directory (for `gulp-ruby-sass`)
+
+Compile build scripts and backend files:
+
     grunt build
 
 The fist run of *node-webkit-builder* task will download node-webkit into *cache* directory and it usually costs more than 10 minutes. 
@@ -26,7 +31,6 @@ That's why I recommend doing this manually:
 Preview (compile + build + run)
 
     gulp
-
 
 #### Development workflow: frontend
 
@@ -58,8 +62,6 @@ Use `run.js` to debug backend or run GUI with just `Ctrl + F5` (in Visual Studio
 
 ### Road Map
 * ( ✓ ) *Work as Grunt task (so that can be run automatically after build)*
-* Interactive graph generation with D3.js (instead of Graphviz)
+* ( ✓ ) GUI as a wrapper for configuration with Grunt
+  * ( ✓ ) Interactive graph generation with D3.js
 * Statistics for selected nodes
-
-#### Nice to have
-* ( in progress ) GUI instead of current configuration with Grunt
