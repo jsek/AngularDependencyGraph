@@ -1,45 +1,26 @@
-﻿
+﻿@import '../base/settings';
 
-@-webkit-keyframes flash {
-    0%, 50%, 100% {
-        opacity: 1;
-    }
+$node-minWidth: 100px;
+$node-status-width: 24px;
 
-    25%, 75% {
-        opacity: 0.2;
-    }
-}
+$node-firstLine-fontSize: 14px;
+$node-secondLine-fontSize: 12px;
 
-@keyframes flash {
-    0%, 50%, 100% {
-        opacity: 1;
-    }
-
-    25%, 75% {
-        opacity: 0.2;
-    }
-}
-
-svg {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+.graphPreview {
+    position: relative;
+    z-index: 0;
 }
 
 .graph {
-    width: 100%;
-    height: 100%;
-    background: #333;
-  
-    .warn {
-        animation-duration: 5s;
-        animation-fill-mode: both;
-        animation-iteration-count: 1;
-    }
-
+    left: - $container-padding;
+    top: - $container-padding;
+    position: absolute;
+    overflow: hidden;
+    width: calc(100% + #{$container-padding * 2});
+      
     text {
-        font-weight: 300;
-        font-size: 14px;
+        font-size: $node-firstLine-fontSize;
+        font-weight: normal;
     }
 
     .label {
@@ -84,6 +65,9 @@ svg {
     }
 
     .warn {
+        animation-duration: 5s;
+        animation-fill-mode: both;
+        animation-iteration-count: 1;
         animation-name: flash;
      
         .queue {
@@ -98,21 +82,21 @@ svg {
     .queue {
         display: block;
         float: left;
-        width: 130px;
+        width: $node-minWidth - $node-status-width;
         height: 20px;
-        font-size: 12px;
+        font-size: $node-secondLine-fontSize;
         margin-top: 2px;
     }
 
     .node g div {
-        width: 200px;
+        min-width: 100px;
         height: 40px;
         color: #fff;
-    }
-
-    .node g div span.consumers {
-        display: inline-block;
-        width: 20px;
+        
+        span.consumers {
+            display: inline-block;
+            width: 20px;
+        }
     }
 
     .edgeLabel text {

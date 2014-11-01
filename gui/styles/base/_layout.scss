@@ -1,12 +1,12 @@
-﻿
+﻿@import './settings';
 
 .container-fluid {
-    padding: 5px;
+    padding: $container-padding;
 }
 // Main content
 
 .main {
-    padding: 20px;
+    padding: $main-padding;
 
     transition: margin-left linear .2s;
     &.expanded {
@@ -17,8 +17,8 @@
 
 @media (min-width: 768px) {
     .main {
-        padding-right: 40px;
-        padding-left: 40px;
+        padding-right: $main-wider-sidePadding;
+        padding-left: $main-wider-sidePadding;
     }
 }
 
