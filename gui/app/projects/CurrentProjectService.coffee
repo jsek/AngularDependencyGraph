@@ -13,8 +13,10 @@
             modelLoaderService.reload(_current.modelPath)
 
     set: (project) ->
+        return if _current?.id is project.id
         _current = project
         @root.currentProject = project
+        _current.whenModelReady = @getModelPromiseFor @reloadModel
         @trigger 'reset', _current
         
     refresh: ->
