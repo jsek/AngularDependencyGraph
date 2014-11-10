@@ -1,4 +1,4 @@
-﻿fs = require('node-fs')
+fs = require 'node-fs'
 
 class Project
     __id = 1

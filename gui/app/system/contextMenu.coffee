@@ -1,4 +1,4 @@
-﻿gui = require('nw.gui')
+gui = require 'nw.gui'
 
 $ ->
     win = gui.Window.get()

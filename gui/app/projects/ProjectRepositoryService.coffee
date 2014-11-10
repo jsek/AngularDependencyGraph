@@ -1,4 +1,4 @@
-﻿fs = require('node-fs')
+fs = require 'node-fs'
 
 global.homeDir = process.env['USERPROFILE'] + '\\AngularDependencyGraph'
 global.projectsDir = "#{global.homeDir}\\Projects\\"
