@@ -1,109 +1,83 @@
-﻿class GraphPreview extends Controller
-
+class GraphPreview extends Controller
     
-    constructor: ($element, currentProjectService) ->
+    constructor: ($element, currentProjectService, graphNodeService) ->
 
         _w = $(window)
         _graph = $element.find '.js-graph'
         _resize = -> _graph.height _w.height()
 
         _w.on 'resize', _resize
-
         _resize()
+        
+        container = undefined
+        svg = $svg = undefined
+        render = new dagreD3.render()
 
+        _graphBaseSettings = 
+            nodesep: 70
+            ranksep: 50
+            rankdir: 'LR'
+            marginx: 20
+            marginy: 20
 
         currentProjectService.on 'save,reset,refresh', (project) ->
             return unless project.whenModelReady
             project.whenModelReady
-                .then (data) -> 
-                    _renderGraph JSON.parse data
-
-
+                .then (model) -> 
+                    _renderGraph model
+                    
         _renderGraph = (model, isUpdate) ->
             
-            # init
-            svg = d3.select("svg")
-            inner = svg.select("g")
-            render = new dagreD3.render()
-        
-            zoom = d3.behavior.zoom().on "zoom", ->
-                inner.attr "transform", "translate(#{d3.event.translate}) scale(#{d3.event.scale})"
-        
-            svg.call zoom
-        
-            g = new dagreD3.graphlib.Graph()
-            g.setGraph
-                nodesep: 70
-                ranksep: 50
-                rankdir: "LR"
-                marginx: 20
-                marginy: 20
-
-            # set modules
-            for module in model
-                id = module.name
-                className = "running"
-                className += " warn"  if module.moduleDependencies.length > 5
-                width = id.length * 8 + 24
-                html = """
-                    <div>
-                        <span class=status></span>
-                        <span class=name>#{module.name}</span>
-                        <span class=queue><span class=counter>#{module.moduleDependencies.length}</span></span>
-                    </div>
-                """
-                g.setNode id,
-                    labelType: "html"
-                    label: html
-                    rx: 5
-                    ry: 5
-                    padding: 0
-                    'class': className
-
-                if module.moduleDependencies
-                    for dependency in module.moduleDependencies
-                        g.setEdge id, dependency,
-                            width: 40
+            unless isUpdate
+                $svg = $('svg')
+                svg = d3.select('svg')
+                container = svg.select('g')
             
-            # set external modules
-            externalModules = []
-            for module in model
-                for dependency in module.moduleDependencies
-                    unless model.any((x) -> x.name is dependency)
-                        externalModules.push dependency
-                      
-            for moduleName in externalModules
-                id = moduleName
-                className = "stopped warn external"
-                html = """
-                    <div>
-                        <span class=status></span>
-                        <span class=name>#{moduleName}</span>
-                        <span class=queue><span class=counter>External</span></span>
-                    </div>
-                """
-                g.setNode id,
-                    labelType: "html"
-                    label: html
-                    rx: 5
-                    ry: 5
-                    padding: 0
-                    'class': className
+            zoom = d3.behavior.zoom().on 'zoom', ->
+                container.attr 'transform', "translate(#{d3.event.translate}) scale(#{d3.event.scale})"
+            
+            g = new dagreD3.graphlib.Graph()
+            g.setGraph _graphBaseSettings
+            _setNodesAndEdges model, g
+            
+            container.call render, g
+            _applySizeAndZoom zoom, g
 
-            # finalize
-            inner.call render, g
-            zoomScale = zoom.scale()
-            graphWidth = g.graph().width + 80
-            graphHeight = g.graph().height + 40
-            width = parseInt(svg.style("width").replace(/px/, ""))
-            height = parseInt(svg.style("height").replace(/px/, ""))
-            zoomScale = Math.min(width / graphWidth, height / graphHeight)
-            translate = [
-                (width / 2) - ((graphWidth * zoomScale) / 2)
-                (height / 2) - ((graphHeight * zoomScale) / 2)
-            ]
-            zoom.translate translate
-            zoom.scale zoomScale
-            zoom.event ((if isUpdate then svg.transition().duration(500) else d3.select("svg")))
+            zoom.event (if isUpdate then svg.transition().duration(500) else d3.select('svg'))
+
+
+        _setNodesAndEdges = (model, graph) ->
+                
+            for module in model.modules
+                graphNodeService
+                    .createInternal module
+                    .applyFor graph
+            
+            for moduleName in model.externalModules
+                graphNodeService
+                    .createExternal moduleName
+                    .applyFor graph
+
                     
+        _applySizeAndZoom = (zoom, graph) ->
+            svg.call zoom
+            
+            graphWidth = graph.graph().width + 80
+            graphHeight = graph.graph().height + 40
+            clientWidth = $svg.width()
+            clientHeight = $svg.height()
 
+            zoomScale = Math.min.apply {}, [
+                1
+                clientWidth / graphWidth
+                clientHeight / graphHeight
+            ]
+            zoom.scale zoomScale
+            
+            centerPoint = [
+                (clientWidth - graphWidth * zoomScale) / 2
+                (clientHeight - graphHeight * zoomScale) / 2
+            ]
+            zoom.translate centerPoint
+            
+            

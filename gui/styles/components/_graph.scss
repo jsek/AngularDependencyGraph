@@ -1,4 +1,4 @@
-﻿@import '../base/settings';
+@import '../base/settings';
 
 $node-minWidth: 100px;
 $node-status-width: 24px;
@@ -17,11 +17,7 @@ $node-secondLine-fontSize: 12px;
     position: absolute;
     overflow: hidden;
     width: calc(100% + #{$container-padding * 2});
-      
-    text {
-        font-size: $node-firstLine-fontSize;
-        font-weight: normal;
-    }
+
 
     .label {
         line-height: 1.4;
@@ -37,74 +33,71 @@ $node-secondLine-fontSize: 12px;
         fill: #666;
     }
 
-    .external rect {
-        stroke: #bbb;
-        fill: #635f13;
+    .external {
+        
+        rect {
+            stroke: #bbb;
+            fill: #635f13;
+        }
+        
+        .status {
+            background-color: #f77;
+        }
     }
 
     .status {
         height: 100%;
         width: 15px;
-        display: block;
         float: left;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
         margin-right: 4px;
     }
 
-    .running .status {
-        background-color: #7f7;
+    .internal {
+        .status {
+            background-color: #7f7;
+        }
+        &.warn .status {
+            background-color: #ffed68;
+        }
     }
 
-    .running.warn .status {
-        background-color: #ffed68;
+    .name {
+        font-size: $node-firstLine-fontSize;
+        margin-top: 4px;
     }
 
-    .stopped .status {
-        background-color: #f77;
+    .counter {
+        height: 20px;
+        font-size: $node-secondLine-fontSize;
+        margin-top: 2px;
     }
 
     .warn {
         animation-duration: 5s;
         animation-fill-mode: both;
-        animation-iteration-count: 1;
+        animation-iteration-count: 3;
         animation-name: flash;
      
-        .queue {
+        .counter {
             color: #f77;
         }
-    }
-
-    .name {
-        margin-top: 4px;
-    }
-
-    .queue {
-        display: block;
-        float: left;
-        width: $node-minWidth - $node-status-width;
-        height: 20px;
-        font-size: $node-secondLine-fontSize;
-        margin-top: 2px;
     }
 
     .node g div {
         min-width: 100px;
         height: 40px;
         color: #fff;
-        
-        span.consumers {
-            display: inline-block;
-            width: 20px;
-        }
     }
 
-    .edgeLabel text {
+    .edgeLabel text { // d3 edge class
+        font-weight: normal;
+        fill: #fff;      
         width: 50px;
-        fill: #fff;
     }
 
-    .edgePath path {
+    .edgePath path { // d3 edge class
         stroke: #999;
         stroke-width: 1.5px;
         fill: #999;
