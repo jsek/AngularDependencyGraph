@@ -1,4 +1,4 @@
-﻿fs = require 'node-fs'
+fs = require 'node-fs'
 exec = require('child_process').exec
 
 class ModelLoader extends Service
@@ -21,7 +21,7 @@ class ModelLoader extends Service
         d = @deferred()
         fs.readFile filePath, (err, data) ->
             ifNot err, ->
-                d.resolve data.toString()
+                d.resolve JSON.parse data.toString()
 
         return d.promise
 
@@ -58,8 +58,9 @@ class ModelLoader extends Service
                 ifNot err, ->
                     exec 'node_modules\\.bin\\grunt.cmd', (err) ->
                         ifNot err, ->
-                            text = fs.readFileSync(filePath).toString()
-                            d.resolve text
+                            fs.readFile filePath, (err, data) ->
+                                ifNot err, ->
+                                    d.resolve JSON.parse data.toString()
                             console.log 'New model loaded successfully'
             
         catch err

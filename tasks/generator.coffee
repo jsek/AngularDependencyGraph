@@ -52,6 +52,20 @@ module.exports = (grunt) ->
 
             log source, destination
 
+            # set external modules
+            externalModules = []
+            for module in modules
+                for dependency in module.moduleDependencies
+                    unless modules.any((x) -> x.name is dependency)
+                        externalModules.push dependency
+                        
+            externalModules = externalModules.distinct()
+                        
+            model = {
+                modules
+                externalModules
+            }
+    
             if options.json
-                jsonFile = destination.replace(/[\\\/\.][^\\\/\.]*$/,'.json')
-                grunt.file.write jsonFile, JSON.stringify modules
+                jsonFile = destination.replace(/[\\\/\.][^\\\/\.]*$/,'.json') # TODO: string::ReplaceExtension
+                grunt.file.write jsonFile, JSON.stringify model
