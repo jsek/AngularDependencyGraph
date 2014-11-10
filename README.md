@@ -1,4 +1,4 @@
-﻿# DependencyGraphGenerator
+# DependencyGraphGenerator
 
 [![Build Status](https://travis-ci.org/jsek/AngularDependencyGraph.svg?branch=master)](https://travis-ci.org/jsek/AngularDependencyGraph) [![Coverage Status](https://coveralls.io/repos/jsek/AngularDependencyGraph/badge.png)](https://coveralls.io/r/jsek/AngularDependencyGraph)
 
@@ -17,7 +17,7 @@ First things first
     npm i -g grunt grunt-cli gulp bower
     npm i && bower i
 
-Then make sure that PATH contains Ruby bin directory (for `gulp-ruby-sass`)
+Then make sure that `PATH` contains Ruby bin directory (for `gulp-ruby-sass`)
 
 Compile build scripts and backend files:
 
