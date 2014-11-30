@@ -3,13 +3,13 @@ jade = require 'jade'
 _templates = 
     internal: jade.compile '''
         .status
-        div
+        .node-body
             .name #{title}
             .counter #{params.count}
         '''
     external: jade.compile '''
         .status
-        div
+        .node-body
             .name #{title}
             .counter External
         ''' 

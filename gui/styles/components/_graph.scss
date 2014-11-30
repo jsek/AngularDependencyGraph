@@ -1,10 +1,12 @@
 @import '../base/settings';
 
 $node-minWidth: 100px;
-$node-status-width: 24px;
+$node-status-width: 15px;
 
 $node-firstLine-fontSize: 14px;
 $node-secondLine-fontSize: 12px;
+
+$node-height: 40px; 
 
 .graphPreview {
     position: relative;
@@ -46,12 +48,13 @@ $node-secondLine-fontSize: 12px;
     }
 
     .status {
-        height: 100%;
-        width: 15px;
+        height: $node-height + 2px;
+        width: $node-status-width;
         float: left;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
         margin-right: 4px;
+        margin-top: 1px;
     }
 
     .internal {
@@ -65,13 +68,14 @@ $node-secondLine-fontSize: 12px;
 
     .name {
         font-size: $node-firstLine-fontSize;
-        margin-top: 4px;
+        margin-top: 2px;
+        margin-left: $node-status-width;
     }
 
     .counter {
-        height: 20px;
+        height: $node-height / 2;
         font-size: $node-secondLine-fontSize;
-        margin-top: 2px;
+        margin-top: 4px;
     }
 
     .warn {
@@ -85,9 +89,9 @@ $node-secondLine-fontSize: 12px;
         }
     }
 
-    .node g div {
-        min-width: 100px;
-        height: 40px;
+    .node-body {
+        min-width: $node-minWidth;
+        height: $node-height;
         color: #fff;
     }
 
