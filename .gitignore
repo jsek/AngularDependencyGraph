@@ -24,6 +24,13 @@ gui/dist
 #HTML
 gui/views/html
 
+#Playground
+playground-*
+playground
+
+#Docs
+docs
+
 #Sass
 .sass-cache
 
