@@ -1,0 +1,225 @@
+#---------------------------------------------
+#
+# Excluded directories
+#  - for libraries & generated files
+#
+#---------------------------------------------
+
+exclude: 
+ - './Content/Sass/_legacy/**'
+ - './Content/Sass/base/_bootstrap/**'
+ - './Content/Sass/base/plugins/**'
+ - './Content/Sass/base/icons/**'
+
+#---------------------------------------------
+#
+# Availible linters are listed below
+#  - always set explicit 'enabled' flag
+#  - leave the comment if absolutely necessary
+#
+#---------------------------------------------
+
+linters:
+
+  BangFormat:
+    enabled: true
+    severity: warning
+    
+  BorderZero:
+    enabled: true
+    convention: none
+
+  ColorKeyword:
+    enabled: true
+    severity: warning
+
+  ColorVariable:
+    enabled: true
+    severity: warning
+
+  Comment:
+    enabled: false
+    
+  Compass::*:
+    enabled: true
+  
+  Compass::PropertyWithMixin:
+    enabled: true
+    ignore:
+      - 'inline-block'
+    severity: warning
+    
+  DebugStatement:
+    enabled: false
+    
+  DeclarationOrder:
+    enabled: true
+    severity: error
+    
+  DuplicateProperty:
+    enabled: true
+    severity: error
+    
+  ElsePlacement:
+    enabled: true
+    severity: warning
+
+  EmptyLineBetweenBlocks:
+    enabled: false # TODO: Enable in 3.6
+
+  EmptyRule:
+    enabled: true
+    severity: error
+
+  FinalNewline:
+    enabled: false
+
+  HexLength:
+    enabled: true
+    style: long
+
+  HexNotation:
+    enabled: true
+    style: lowercase
+
+  HexValidation:
+    enabled: true
+    severity: error
+
+  IdSelector:
+    enabled: true
+    severity: warning
+
+  ImportantRule:
+    enabled: true
+    severity: warning
+
+  ImportPath:
+    enabled: true
+    severity: error
+
+  Indentation:
+    enabled: false # TODO: Enable in 3.5
+#    width: 4
+
+  LeadingZero:
+    enabled: true
+    severity: warning
+  
+  MergeableSelector:
+    enabled: true
+    severity: warning # TODO: set 'error' in 3.7
+
+  NameFormat:
+    enabled: false # TODO: Enable in 3.7
+    
+  NestingDepth:
+    enabled: true
+    max_depth: 5
+    severity: warning
+    
+  PlaceholderInExtend:
+    enabled: false
+
+  PropertyCount:
+    enabled: false # NOT SURE!
+
+  PropertySortOrder:
+    enabled: false # TODO: Enable in 3.8
+#    severity: warning
+#    order:
+#      - display
+#      - position
+#      -            # This empty element signals a visual separation
+#      - margin
+#      - padding
+#    separate_groups: true
+    
+  PropertySpelling:
+    enabled: true
+    severity: error
+    
+  QualifyingElement:
+    enabled: true
+    allow_element_with_attribute: true
+    severity: warning
+
+  SelectorDepth:
+    enabled: true
+    max_depth: 5
+    severity: warning
+
+  SelectorFormat:
+    enabled: false # TODO: Enable in 3.7
+    
+  Shorthand:
+    enabled: true
+    severity: warning
+
+  SingleLinePerProperty:
+    enabled: true
+    severity: error
+  
+  SingleLinePerSelector:
+    enabled: true
+    severity: error
+
+  SpaceAfterComma:
+    enabled: true
+    severity: warning
+
+  SpaceAfterPropertyColon:
+    enabled: true
+    severity: warning
+    
+  SpaceAfterPropertyName:
+    enabled: true
+    severity: warning
+
+  SpaceBeforeBrace:
+    allow_single_line_padding: true
+    severity: warning
+
+  SpaceBetweenParens:
+    enabled: true
+    severity: warning
+
+  StringQuotes:
+    enabled: true
+    severity: warning
+    
+  TrailingSemicolon:
+    enabled: false
+    
+  TrailingZero:
+    enabled: true
+    severity: warning
+    
+  UnnecessaryMantissa:
+    enabled: true
+    severity: warning
+    
+  UnnecessaryParentReference:
+    enabled: true
+    severity: error
+    
+  UrlFormat:
+    enabled: false
+    
+  UrlQuotes:
+    enabled: true
+    severity: warning
+
+  VariableForProperty:
+    enabled: false # TODO: Enable in 3.8
+#    severity: error
+#    properties:
+#      - color
+#      - font # -size >
+
+  VendorPrefix:
+    enabled: true
+    severity: error
+  
+  ZeroUnit:
+    enabled: false

@@ -1,15 +1,9 @@
+require './config/gulp-for-stylesheets'
 gulp        = require 'gulp'
-gutil       = require 'gulp-util'
-shell       = require 'gulp-shell'
-coffee      = require 'gulp-coffee'
-ngAnnotate  = require 'gulp-ng-annotate'
-uglify      = require 'gulp-uglify'
-ngClassify  = require 'gulp-ng-classify'
-sass        = require 'gulp-ruby-sass'
-jade        = require 'gulp-jade'
-copy        = require 'gulp-copy'
+$           = require('gulp-load-plugins')()
 NwBuilder   = require 'node-webkit-builder'
 
+_log = $.util.log
 
 artefacts = [
     'gui/dist/**'
@@ -31,34 +25,45 @@ artefacts = [
 #// Configurable pipes
 #//
 
-compileCoffee = (action) ->
-    action or= gulp.src
-    action 'gui/app/**/*.coffee'
-        .pipe ngClassify (file) ->
+compileCoffee = ->
+    gulp.src 'gui/app/**/*.coffee'
+        .pipe $.ngClassify (file) ->
             if file.path.indexOf('admin') isnt -1  # use 'admin' as the appName if 'admin' is found in the file path
                 { appName: 'admin' }
             else
                 { appName: 'app' }
         .pipe gulp.dest 'gui/dist/coffee'
-        .pipe coffee { bare: true }
-        .on 'error', gutil.log
+        .pipe $.coffee { bare: true }
+        .on 'error', _log
 
-        .pipe ngAnnotate { add:true, single_quotes: true }
+        .pipe $.ngAnnotate { add: true, single_quotes: true }
 
-compileSass = (options, action) ->
+#//
+
+compileTs = ->
+    gulp.src 'gui/app/**/*.ts'
+        .pipe $.tsc {
+               module           : 'commonjs'
+               target           : 'ES5'
+               noLib            : true
+               suppressImplicitAnyIndexErrors: true
+               
+            }
+        .on 'error', _log
+        .pipe $.ngAnnotate { add: true, single_quotes: true }
+
+compileSass = (options) ->
     options or= {}
     options.compass = true
     options.sourcemap = false
-    action or= gulp.src
-    action 'gui/styles/**/*.scss'
-        .pipe sass options
-        .on 'error', gutil.log
+    gulp.src 'gui/styles/**/*.scss'
+        .pipe $.rubySass options
+        .on 'error', _log
 
-compileJade = (action) ->
-    action or= gulp.src
-    action "gui/index.jade"
-        .pipe jade()
-        .on 'error', gutil.log
+compileJade =  ->
+    gulp.src "gui/index.jade"
+        .pipe $.jade()
+        .on 'error', _log
         .pipe gulp.dest 'gui/dist/'
 
 
@@ -80,17 +85,22 @@ gulp.task 'sassRelease', ->
 gulp.task 'coffee', ->
     compileCoffee()
         .pipe gulp.dest 'gui/dist/js'
+    compileTs()
+        .pipe gulp.dest 'gui/dist/js'
 
 gulp.task 'coffeeRelease', ->
     compileCoffee()
-        .pipe uglify { mangle: true }
+        .pipe $.uglify { mangle: true }
+        .pipe gulp.dest 'gui/dist/js'
+    compileTs()
+        .pipe $.uglify { mangle: true }
         .pipe gulp.dest 'gui/dist/js'
 
 gulp.task 'copyCssAndFonts', ->
     gulp.src 'gui/styles/themes/**/*.css' 
-        .pipe copy 'gui/dist/css', prefix:3
+        .pipe $.copy 'gui/dist/css', prefix:3
     gulp.src 'gui/styles/fonts/**' 
-        .pipe copy 'gui/dist', prefix:2
+        .pipe $.copy 'gui/dist', prefix:2
 
 gulp.task 'buildExecutable', ->
     nw = new NwBuilder
@@ -101,16 +111,16 @@ gulp.task 'buildExecutable', ->
         buildDir: 'bin'
     
     nw.on 'log', (msg) ->
-        gutil.log 'node-webkit-builder', msg
+        _log 'node-webkit-builder', msg
     
     nw.build().catch (err) ->
-        gutil.log 'node-webkit-builder', err
+        _log 'node-webkit-builder', err
 
-gulp.task 'buildAndRun', shell.task [ 
+gulp.task 'buildAndRun', $.shell.task [ 
         'gulp buildExecutable && cmd /C "start .\\bin\\AngularDependencyGraph\\win\\AngularDependencyGraph.exe"' 
     ]
 
-gulp.task 'run', shell.task [ 
+gulp.task 'run', $.shell.task [ 
         'cmd /C "start .\\bin\\AngularDependencyGraph\\win\\AngularDependencyGraph.exe"' 
     ]
 
