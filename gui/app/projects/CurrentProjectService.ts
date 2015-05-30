@@ -69,4 +69,5 @@ class CurrentProject {
     }
 }
 
-angular.module("app").service("CurrentProject", CurrentProject);
+angular.module("app")
+.service("CurrentProject", CurrentProject);

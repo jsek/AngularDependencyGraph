@@ -24,6 +24,16 @@ class AppConfig {
     }
 }
 
+interface IAppConfig {
+    homeDir: string,
+    projectsDir: string;
+}
+
 angular
     .module("app", <string[]> new App())
-    .config([AppConfig]);
+    .config([AppConfig])
+    .constant('config',<IAppConfig> {
+        homeDir     : process.env['USERPROFILE'] + '\\AngularDependencyGraph',
+        projectsDir : `${this.homeDir}\\Projects\\`
+
+    })
