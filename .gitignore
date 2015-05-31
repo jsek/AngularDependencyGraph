@@ -114,3 +114,6 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 *.suo
+
+# TypeScript
+typings/*

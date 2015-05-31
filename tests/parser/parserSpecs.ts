@@ -3,8 +3,8 @@
 
 require("../../src/utils/utils");
 
-import FakeGrunt = require("../mocks/fake-grunt");
 import grunt = require("grunt");
+var FakeGrunt = require("../mocks/FakeGrunt.ts");
 
 var parser = (process.env.ANGULARDEPENDENCYGRAPH_COVERAGE)
     ? require("../../src-cov/parser/parser")
