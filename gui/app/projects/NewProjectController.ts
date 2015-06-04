@@ -3,9 +3,9 @@
 /// <reference path="./ProjectModel.ts"/>
 /// <reference path="./ProjectRepositoryService.ts"/>
 
-var ﻿fs = require('node-fs');
+var fs = require('node-fs');
 import { Project } from "./ProjectModel";
-import { ProjectRepositoryService } from "./ProjectRepositoryService";
+import { IProjectRepository } from "./ProjectRepositoryService";
 
 class NewProjectController {
 

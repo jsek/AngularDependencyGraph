@@ -2,16 +2,16 @@
 /// <reference path="./ProjectModel.ts"/>
 
 var fs = require('node-fs');
-import { Project } from "./ProjectModel";
+import { IProject, Project } from "./ProjectModel";
 
-interface IProjectRepository {
-    getProjects(): Array<any>;
-    add(project);
+export interface IProjectRepository {
+    getProjects(): Array<IProject>;
+    add(project: IProject);
     on(events: string, fn: Function);
     trigger(eventName: string, data: any);
 }
 
-class ProjectRepository implements IProjectRepository {
+export class ProjectRepository implements IProjectRepository {
 
     public projects = [];
     private _listeners = {};
@@ -66,5 +66,3 @@ class ProjectRepository implements IProjectRepository {
 
 angular.module('app')
 .service('projectRepositoryService', ProjectRepository);
-
-export var ProjectRepositoryService = ProjectRepository;

@@ -44,7 +44,7 @@ module.exports = (grunt) => {
             modules = filter(modules, options);
 
             # Generate graph specification (.dot)
-            grunt.file.write(destination, grunt.template.process template, {
+            grunt.file.write(destination, grunt.template.process(template, {
                 data: {
                     modules: modules,
                     options: options

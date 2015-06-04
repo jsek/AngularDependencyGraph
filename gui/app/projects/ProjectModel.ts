@@ -3,7 +3,7 @@
 
 var fs = require('node-fs');
 
-interface IProject {
+export interface IProject {
     id: number;
     name: string;
     path: string;
@@ -13,7 +13,7 @@ interface IProject {
     loadOptions();
 }
 
-class ProjectModel implements IProject {
+export class Project implements IProject {
     private __id = 1;
     private _dotFilename = 'model.dot';
     private _modelFilename = 'model.json';
@@ -93,5 +93,3 @@ class Options {
         }
     }
 }
-
-export var Project = ProjectModel;
